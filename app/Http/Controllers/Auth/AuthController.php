@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Session;
+use Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     /*
@@ -28,7 +30,9 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
+    protected $redirectPath = '/home';
+    protected $loginPath = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -40,33 +44,23 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function authenticate(Request $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        $email = $request->input('email');
+        $password = $request->input('password');
+       if (Auth::attempt(['email' => $email, 'password' => $password]))
+       {
+           return redirect()->intended('home');
+       }else{
+          return redirect()->intended('/');
+       }
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
+    public function logout(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        Auth::logout();
+        Session::flush();
+        return redirect()->intended('/');
     }
+
 }

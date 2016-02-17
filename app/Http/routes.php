@@ -11,9 +11,26 @@
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::get('company', 'CompanyController@index');
+
+
+Route::get('auth/login', 'Auth\AuthController@authenticate');
+Route::post('auth/login', 'Auth\AuthController@authenticate');
+Route::get('auth/logout', 'Auth\AuthController@logout');
+/*
+Route::get('home', [
+    'uses' => 'HomeController@index'
+]);*/
+
+Route::controllers([   'password' => 'Auth\PasswordController', ]);
+
+
+View::composer('shared.main-template', 'App\Http\Composer\MainTemplateComposer');
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +44,17 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+
 });
+
+Route::get('home', [
+    'middleware' => 'auth',
+    'uses' => 'HomeController@index'
+]);
+
+
+Route::get('projects', [
+    'middleware' => 'auth',
+    'uses' => 'ProjectController@index'
+]);
