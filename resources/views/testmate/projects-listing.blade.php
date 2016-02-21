@@ -18,46 +18,43 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
+        <table class="table table-hover" id="projects-table">
           <tbody><tr>
-            <th>ID</th>
-            <th>User</th>
-            <th>Date</th>
+            <th>Code</th>
+            <th>Project</th>
             <th>Status</th>
-            <th>Reason</th>
+            <th>Last Update</th>
+            <th>Description</th>
           </tr>
-          <tr>
-            <td>183</td>
-            <td>John Doe</td>
-            <td>11-7-2014</td>
+
+          @foreach($projectsList as $project)
+              <tr id="{{ $project['code'] }}" class="project-row">
+                <td>{{ $project['code'] }}</td>
+                <td>{{ $project['name'] }}</td>
+                <td><span class="label label-success">{{ $project['status'] }}</span></td>
+                <td>{{ $project['lastUpdateDate'] }}</td>
+                <td>{{ $project['description'] }}</td>
+              </tr>
+          @endforeach
+          <!--
             <td><span class="label label-success">Approved</span></td>
-            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-          </tr>
-          <tr>
-            <td>219</td>
-            <td>Alexander Pierce</td>
-            <td>11-7-2014</td>
             <td><span class="label label-warning">Pending</span></td>
-            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-          </tr>
-          <tr>
-            <td>657</td>
-            <td>Bob Doe</td>
-            <td>11-7-2014</td>
             <td><span class="label label-primary">Approved</span></td>
-            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-          </tr>
-          <tr>
-            <td>175</td>
-            <td>Mike Doe</td>
-            <td>11-7-2014</td>
             <td><span class="label label-danger">Denied</span></td>
-            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-          </tr>
+          -->
         </tbody></table>
       </div>
       <!-- /.box-body -->
     </div>
     <!-- /.box -->
   </div>
+  <script>
+  $(document).ready(function() {
+    $("#projects-table .project-row").on('click', function(event) {
+        $(location).attr('href', 'project/'+$(this).attr("id"));
+    });
+  });
+
+  </script>
+
 @endsection
