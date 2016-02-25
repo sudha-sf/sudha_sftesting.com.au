@@ -1,8 +1,8 @@
 @extends('shared.not-logged-template')
-
+@section('content')
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <img src="testmate/images/octopus.png">
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -38,3 +38,4 @@
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+@endsection

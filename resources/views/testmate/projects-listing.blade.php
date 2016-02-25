@@ -4,7 +4,7 @@
 <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Responsive Hover Table</h3>
+        <h3 class="box-title"></h3>
 
         <div class="box-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
@@ -51,7 +51,7 @@
   <script>
   $(document).ready(function() {
     $("#projects-table .project-row").on('click', function(event) {
-        $(location).attr('href', 'project/'+$(this).attr("id"));
+        $(location).attr('href', 'projects/'+$(this).attr("id"));
     });
   });
 

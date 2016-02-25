@@ -48,13 +48,9 @@ Route::group(['middleware' => ['web']], function () {
 
 });
 
-Route::get('home', [
-    'middleware' => 'auth',
-    'uses' => 'HomeController@index'
-]);
+Route::get('home', [    'middleware' => 'auth',    'uses' => 'HomeController@index']);
 
 
-Route::get('projects', [
-    'middleware' => 'auth',
-    'uses' => 'ProjectController@index'
-]);
+Route::get('projects', [    'middleware' => 'auth',    'uses' => 'ProjectController@index']);
+
+Route::get('projects/{project}', ['middleware' => 'auth',    'uses' => 'ProjectController@showProject' ]);

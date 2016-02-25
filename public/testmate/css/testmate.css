@@ -1,0 +1,18 @@
+/*ASSETS PER PROJECT PAGE*/
+.item .asset-image{
+  width:40px;
+  height:40px;
+  float:left;
+
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+
+.item .asset-image.product-VIDEO{
+  background-image: url("../images/icons/video.png");
+}
+
+.item .asset-image.product-DOCUMENT{
+  background-image: url("../images/icons/document.png");
+}

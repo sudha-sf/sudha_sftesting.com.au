@@ -21,6 +21,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect.
     -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
+
+    <!-- TESTMATE CSS -->
+    <link href="{{ asset("/testmate/css/testmate.css")}}" rel="stylesheet" type="text/css" />
+
     <!-- jQuery 2.1.4 -->
     <script src="{{ asset ("/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js") }}"></script>
 
@@ -45,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                {{ $page_title or "Page Title" }}
+                {{ $page_title or "" }}
                 <small>{{ $page_description or null }}</small>
             </h1>
         </section>
