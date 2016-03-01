@@ -37,7 +37,7 @@ class ProjectController extends Controller
     $timelineHtml = "";
     $assets = Asset::where('projectID', '=', $project->projectID)->orderBy('uploadDate', 'desc')->get();
     foreach($assets as $asset){
-      if($asset->assetType == "NOTE"){
+      if($asset->assetType == "TIMELINE"){
         $timelineHtml .= $this->formatTimeLine($asset);
       }else{
         $assetFilessHtml .= $this->formatAssetHtml($asset);

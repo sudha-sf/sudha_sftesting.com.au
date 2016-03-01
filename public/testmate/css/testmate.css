@@ -16,3 +16,19 @@
 .item .asset-image.product-DOCUMENT{
   background-image: url("../images/icons/document.png");
 }
+
+.testmate-modal .modal-dialog{
+    min-width: 900px;
+}
+.box-comments {
+    background: none;
+}
+h3.heading-comment {
+    font-size: 18px;
+    font-weight: bold;
+}
+.main-comments {
+    height: 310px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
