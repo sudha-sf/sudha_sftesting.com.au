@@ -63,3 +63,9 @@ Route::get('comments/{assetID}', [    'middleware' => 'auth',    'uses' => 'Comm
  * Post a comment related for a video in  associated asset
  */
 Route::post('comments/{assetID}', [    'middleware' => 'auth',    'uses' => 'CommentController@post']);
+
+
+
+Route::group(['prefix' => ''], function() {
+    define('TESTMATE_COMPANY_ID','1');
+});

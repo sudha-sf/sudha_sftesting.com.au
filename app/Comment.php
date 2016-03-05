@@ -43,7 +43,11 @@ class Comment extends Model
      */
     public function userObject()
     {
-        return $this->belongsTo('App\User', 'userID');
+        return $this->belongsTo('App\User', 'senderUserID');
+    }
+    public function receiverUserObject()
+    {
+        return $this->belongsTo('App\User', 'receiverUserID');
     }
     /*
      * Relationship with Asset object model

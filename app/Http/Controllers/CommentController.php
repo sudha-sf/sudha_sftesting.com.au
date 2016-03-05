@@ -20,13 +20,16 @@ class CommentController extends Controller
      * @Get("/comments/{assetID}")
      * @Versions({"v1"})
      */
-      public function index($assID)
+      public function index($assetID)
       {
         /*
          * Get all comments which are related assert ID
          * The result order by date(DESC)
          */
-        $commentList = Comment::where(array('assetID'=>$assID))->with('userObject')->get();
+        $commentList = Comment::where(array('assetID'=>$assetID))
+                              ->with('userObject')
+                        //      ->orderBy('date', 'desc')
+                              ->get();
 
         return json_encode($commentList);
       }
@@ -39,23 +42,31 @@ class CommentController extends Controller
      * @Param ({assID : this is asset ID which are associated, message: The content of comment that the user posted})
      * @Versions({"v1"})
      */
-    public function post($assID, Request $request)
+    public function post($assetID, Request $request)
     {
         $params = $request->all();
         //Get admin user via companyID
-        $companyID = \Auth::user()->companyID;
-        $adminUser = User::where(array('companyID'=>$companyID, 'isCompanyAdmin'=>1))->get()->first();
+        $project = Project::GetProjectByAsset($assetID);
+        $project = $project[0];
+        //$companyID = \Auth::user()->companyID;
+
+        //if the user is from testmate, the receiver will be the customer's team leader for the project
+        // if the user is from an external customer, then testmate's admin will receive the email
+
+        $receiverUserID = (\Auth::user()->companyID == TESTMATE_COMPANY_ID)? $project->userID: $project->adminID;
+        $receiverUser = User::find($receiverUserID);
+
         //Init Comment Object model to assign variable & store new comment
         $comment = new Comment();
-        $comment->assetID = $assID;
-        $comment->adminID = $adminUser->userID;
-        $comment->userID = \Auth::user()->userID;
+        $comment->assetID = $assetID;
+        $comment->receiverUserID = $receiverUser->userID;
+        $comment->senderUserID = \Auth::user()->userID;
         $comment->comment = ($params['message']?$params['message']:null);
         $comment->date = date('Y-m-d H:i:s');
         //Store comment into database table
         if($comment->save()){
             //Send email to admin user
-            $this->sendMail($adminUser, $assID);
+            $this->sendMail($receiverUser, $assetID);
             //Set message response to client site after save comment successful
             $message = [
                 'status'=>true,
@@ -83,10 +94,11 @@ class CommentController extends Controller
      * @Param ({assID : this is asset ID which are associated, message: The content of comment that the user posted})
      * @Versions({"v1"})
      */
-    private function sendMail($adminUser, $assID)
+    private function sendMail($receiverUser, $assetID)
     {
+      
         //Get asset information which are related current comment posted.
-        $asset = Comment::where(array('assetID'=>$assID))->with('assetObject')->get()->first();
+        $asset = Comment::where(array('assetID'=>$assetID))->with('assetObject')->get()->first();
         $assetName = $asset->assetObject->name;
         //Get project information from current asset
         $project = Project::where(array('projectID'=>$asset->assetObject->projectID))->get()->first();
@@ -95,8 +107,8 @@ class CommentController extends Controller
         $mailContent = new \StdClass();
         $mailContent->subject = 'Notify: Project '.$projectName.' - Asset '.$assetName;
         $mailContent->from = \Auth::user()->firstName.' '.\Auth::user()->lastName;
-        $mailContent->email_to = $adminUser->email;
-        $mailContent->full_name = $adminUser->firstName.' '.$adminUser->lastName;
+        $mailContent->email_to = $receiverUser->email;
+        $mailContent->full_name = $receiverUser->firstName.' '.$receiverUser->lastName;
         $mailContent->access_link = url('projects/'.$project->code);
         $mailContent->title ='Project '.$projectName.' - Asset'.$assetName;
 

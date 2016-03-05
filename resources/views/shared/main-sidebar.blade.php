@@ -22,8 +22,12 @@
       <!-- Optionally, you can add icons to the links -->
       <li><a href="/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li class="active"><a href="/projects"><i class="fa fa-edit"></i> <span>Projects</span></a></li>
-      <li><a href="/users"><i class="fa fa fa-users"></i> <span>Users</span></a></li>
 
+        <?php
+        $companyID = Auth::user()->companyID;
+        if(TESTMATE_COMPANY_ID == $companyID){ ?>
+          <li><a href="/users"><i class="fa fa fa-users"></i> <span>Users</span></a></li>
+        <?php } ?>
     </ul>
     <!-- /.sidebar-menu -->
   </section>

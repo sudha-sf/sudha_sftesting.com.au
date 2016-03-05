@@ -15,8 +15,11 @@ class ProjectController extends Controller
     $pageTitle = "Projects";
     $companyID = Auth::user()->companyID;
 
-
-    $projectsList = Project::where('companyID', '=', $companyID)->get();
+    if(TESTMATE_COMPANY_ID != $companyID){
+      $projectsList = Project::where('companyID', '=', $companyID)->get();
+    }else{
+      $projectsList = Project::all();
+    }
 
     return view('testmate.projects-listing', ['projectsList' => $projectsList, 'page_title' => $pageTitle]);
   }
@@ -24,7 +27,12 @@ class ProjectController extends Controller
   public function showProject($projectCode) {
     $companyID = Auth::user()->companyID;
 
-    $project = Project::where('companyID', '=', $companyID)->where('code', $projectCode)->firstOrFail();
+    if(TESTMATE_COMPANY_ID != $companyID){
+      $project = Project::where('companyID', '=', $companyID)->where('code', $projectCode)->firstOrFail();
+    }else{
+      $project = Project::where('code', $projectCode)->firstOrFail();
+    }
+
 
     $assetsHtml = $this->formatAssetsList($project);
 

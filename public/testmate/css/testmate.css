@@ -1,3 +1,8 @@
+header .logo img{
+  max-width: 230px;
+  max-height: 50px;
+}
+
 /*ASSETS PER PROJECT PAGE*/
 .item .asset-image{
   width:40px;
