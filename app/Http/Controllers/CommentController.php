@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Log;
 use Mail;
 use App\Comment;
 use App\User;
@@ -96,7 +97,7 @@ class CommentController extends Controller
      */
     private function sendMail($receiverUser, $assetID)
     {
-      
+      try{
         //Get asset information which are related current comment posted.
         $asset = Comment::where(array('assetID'=>$assetID))->with('assetObject')->get()->first();
         $assetName = $asset->assetObject->name;
@@ -105,7 +106,7 @@ class CommentController extends Controller
         $projectName = $project->name;
         //Define mail content
         $mailContent = new \StdClass();
-        $mailContent->subject = 'Notify: Project '.$projectName.' - Asset '.$assetName;
+        $mailContent->subject = '[TESTMATE] - New comment on Project '.$projectName.' - Asset '.$assetName;
         $mailContent->from = \Auth::user()->firstName.' '.\Auth::user()->lastName;
         $mailContent->email_to = $receiverUser->email;
         $mailContent->full_name = $receiverUser->firstName.' '.$receiverUser->lastName;
@@ -115,10 +116,14 @@ class CommentController extends Controller
         //Send email to Admin who are related the asset commented by user
         Mail::send('emails.reminder', ['message' => $mailContent,'access_link' => $mailContent->access_link],
             function ($m) use ($mailContent) {
-                $m->from('no-reply@app.com', 'Administrator');
+                $m->from(TESTMATE_EMAIL_FROM, TESTMATE_EMAIL_FROM_NAME);
                 $m->to($mailContent->email_to, $mailContent->full_name)->subject($mailContent->subject);
             });
 
         return true;
+      }catch(\Exception $e){
+         Log::error($e);
+      }
+
     }
 }

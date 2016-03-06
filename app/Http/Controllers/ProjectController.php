@@ -40,6 +40,8 @@ class ProjectController extends Controller
     return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle]);
   }
 
+
+
   function formatAssetsList($project){
     $assetFilessHtml = "";
     $timelineHtml = "";

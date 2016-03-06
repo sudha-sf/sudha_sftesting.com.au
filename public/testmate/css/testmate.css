@@ -37,3 +37,14 @@ h3.heading-comment {
     overflow-y: auto;
     margin-bottom: 10px;
 }
+
+/*------------ ASSET FORM START */
+.error {
+  color: red;
+}
+
+#assetForm #uploadDate {
+    width: 80%;
+    display: inline-block;
+}
+/*------------ ASSET FORM END */

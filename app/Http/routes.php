@@ -32,21 +32,6 @@ Route::controllers([   'password' => 'Auth\PasswordController', ]);
 
 View::composer('shared.main-template', 'App\Http\Composer\MainTemplateComposer');
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
-Route::group(['middleware' => ['web']], function () {
-
-
-});
 
 Route::get('home', [    'middleware' => 'auth',    'uses' => 'HomeController@index']);
 
@@ -65,7 +50,33 @@ Route::get('comments/{assetID}', [    'middleware' => 'auth',    'uses' => 'Comm
 Route::post('comments/{assetID}', [    'middleware' => 'auth',    'uses' => 'CommentController@post']);
 
 
+/********************************** ADMIN ROUTES ***************************/
+/********************************** ADMIN ROUTES ***************************/
+/********************************** ADMIN ROUTES ***************************/
+
+
+Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\AdminMiddleware'), function()
+{
+    Route::get('admin/projects', ['uses' => 'ProjectController@index' ]);
+
+    Route::get('admin/assets/{project}', ['as' => 'project—listing-admin',   'uses' => 'AssetController@index' ]);
+
+    Route::get('admin/assets/{project}/create', [ 'uses' => 'AssetController@showCreateForm' ]);
+
+    Route::get('admin/assets/{project}/{asset}/edit', [ 'uses' => 'AssetController@showEditForm' ]);
+
+    Route::post('admin/assets/{project}/save', [ 'uses' => 'AssetController@save' ]);
+});
+
+
+/********************************** ADMIN ROUTES END ***************************/
+/********************************** ADMIN ROUTES END ***************************/
+/********************************** ADMIN ROUTES END ***************************/
+
 
 Route::group(['prefix' => ''], function() {
     define('TESTMATE_COMPANY_ID','1');
+    define('TESTMATE_EMAIL_FROM','no-reply@app.com');
+    define('TESTMATE_EMAIL_FROM_NAME','Administrator');
+
 });

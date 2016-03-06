@@ -10,6 +10,11 @@ class Project extends Model
   protected $primaryKey = 'projectID';
   public $timestamps = false;
 
+  public function companyObject()
+  {
+      return $this->belongsTo('App\Company', 'companyID');
+  }
+
   public static function GetProjectByAsset($assetID){
     $project = DB::table('projects')
       ->join('assets', 'projects.projectID', '=', 'assets.projectID')
