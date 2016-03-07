@@ -103,4 +103,17 @@ class ProjectController extends Controller
 
   }
 
+  public function calendar() {
+    $pageTitle = "Calendar";
+    $companyID = Auth::user()->companyID;
+
+    if(TESTMATE_COMPANY_ID != $companyID){
+      $projectsList = Project::where('companyID', '=', $companyID)->get();
+    }else{
+      $projectsList = Project::all();
+    }
+
+    return view('testmate.calendar', ['projectsList' => $projectsList, 'page_title' => $pageTitle]);
+  }
+
 }

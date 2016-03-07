@@ -50,6 +50,8 @@ Route::get('comments/{assetID}', [    'middleware' => 'auth',    'uses' => 'Comm
 Route::post('comments/{assetID}', [    'middleware' => 'auth',    'uses' => 'CommentController@post']);
 
 
+Route::get('calendar', [    'middleware' => 'auth',    'uses' => 'ProjectController@calendar']);
+
 /********************************** ADMIN ROUTES ***************************/
 /********************************** ADMIN ROUTES ***************************/
 /********************************** ADMIN ROUTES ***************************/
