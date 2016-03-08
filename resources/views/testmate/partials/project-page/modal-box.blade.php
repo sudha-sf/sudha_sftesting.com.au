@@ -18,10 +18,6 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer box-comments col-md-5">
-                  <select class="form-control type-comment">
-                      <option>Approved / Pending Review</option>
-                      <option>Other Select</option>
-                  </select>
                   <h3 class="heading-comment">Comments</h3>
                   <div class="main-comments">
                       <!-- box-comments-->

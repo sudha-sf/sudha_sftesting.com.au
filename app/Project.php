@@ -15,10 +15,11 @@ class Project extends Model
       return $this->belongsTo('App\Company', 'companyID');
   }
 
-  public static function GetProjectByAsset($assetID){
+  public static function getProjectByAsset($assetID){
     $project = DB::table('projects')
       ->join('assets', 'projects.projectID', '=', 'assets.projectID')
       ->where('assets.assetID', '=', $assetID)->get();
+
     return $project;
   }
 }

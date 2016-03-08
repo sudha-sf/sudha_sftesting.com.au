@@ -70,7 +70,6 @@ function getAllComments(assetID){
         },
         success: function(result){
           ShowComments(result);
-
         }
     });
 }
@@ -81,7 +80,9 @@ function ShowComments(result){
           innerHTML += '<div class="box-comment">';
           innerHTML+= '<img class="img-circle img-sm" src="/testmate/images/default_avatar.png" alt="User Image">';
           innerHTML+= '<div class="comment-text">';
-          innerHTML+= ' <span class="username">'+data.user_object.firstName+' '+data.user_object.lastName;
+          if(data.user_object != null){
+              innerHTML+= ' <span class="username">'+data.user_object.firstName+' '+data.user_object.lastName;
+          }
           innerHTML+= '<span class="text-muted pull-right">'+data.date+'</span></span>'+data.comment+'</div></div>';
 
   });

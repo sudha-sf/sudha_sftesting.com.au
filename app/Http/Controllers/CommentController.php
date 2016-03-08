@@ -46,15 +46,14 @@ class CommentController extends Controller
     public function post($assetID, Request $request)
     {
         $params = $request->all();
-        //Get admin user via companyID
-        $project = Project::GetProjectByAsset($assetID);
+        //Get project information from asset ID to get CompanyID
+        $project = Project::getProjectByAsset($assetID);
         $project = $project[0];
         //$companyID = \Auth::user()->companyID;
 
         //if the user is from testmate, the receiver will be the customer's team leader for the project
         // if the user is from an external customer, then testmate's admin will receive the email
-
-        $receiverUserID = (\Auth::user()->companyID == TESTMATE_COMPANY_ID)? $project->userID: $project->adminID;
+        $receiverUserID = ((\Auth::user()->companyID == TESTMATE_COMPANY_ID)? $project->userID: $project->adminID);
         $receiverUser = User::find($receiverUserID);
 
         //Init Comment Object model to assign variable & store new comment
