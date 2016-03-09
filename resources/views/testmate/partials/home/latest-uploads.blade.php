@@ -9,28 +9,24 @@
       <!-- /.box-header -->
       <div class="box-body">
         <ul class="products-list product-list-in-box">
-
-          <li class="item asset-DOCUMENT">
-            <a href="" target="_blank" class=" asset-item" id="6" asset-type="DOCUMENT" name="XXXX">
-            <div class="asset-image product-DOCUMENT"></div>
-            <div class="product-info">
-                <span class="product-title">Project WES-LOG - XXXX</span>
-                <span class="label  pull-right">APPROVED</span>
-                <span class="product-description">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
-                <span class="product-description asset-date"><strong>Upload Date: </strong>2016-03-15</span>
-            </div>
-            </a>
-          </li><li class="item asset-VIDEO">
-            <a href="156218644" target="_blank" class=" asset-item" id="1" asset-type="VIDEO" name="WES_TM_0116_1_Path3_Tester5">
-            <div class="asset-image product-VIDEO"></div>
-            <div class="product-info">
-                <span class="product-title">Project WES-LOG - WES_TM_0116_1_Path3_Tester5</span>
-                <span class="label  pull-right">APPROVED</span>
-                <span class="product-description">Path 3 for tester 4</span>
-                <span class="product-description asset-date"><strong>Upload Date: </strong>2016-02-15</span>
-            </div>
-            </a>
-          </li>
+            <?php $i=0; ?>
+            @foreach($assetList as $key=>$asset)
+                @if($i == 5)
+                     <?php break; ?>
+                @endif
+              <li class="item asset-DOCUMENT">
+                <a href="/projects/{{$asset->url}}" target="_blank" class=" asset-item" id="6" asset-type="{{$asset->assetType}}">
+                <div class="asset-image product-DOCUMENT"></div>
+                <div class="product-info">
+                    <span class="product-title">{{$asset->name}}</span>
+                    <span class="label  pull-right">{{$asset->status}}</span>
+                    <span class="product-description">{{$asset->description}}</span>
+                    <span class="product-description asset-date"><strong>Upload Date: </strong>{{$asset->uploadDate}}</span>
+                </div>
+                </a>
+              </li>
+                <?php $i++; ?>
+            @endforeach
         </ul>
       </div>
       <!-- /.box-body -->

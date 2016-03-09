@@ -7,10 +7,10 @@
 
     <div class='row'>
         <div class='col-md-6'>
-            @include('testmate.partials.home.latest-projects')
+            @include('testmate.partials.home.latest-projects', array('projectsList' => $projectsList))
         </div><!-- /.col -->
         <div class='col-md-6'>
-          @include('testmate.partials.home.latest-uploads')
+          @include('testmate.partials.home.latest-uploads', array('assetList'=>$assetList))
         </div><!-- /.col -->
     </div><!-- /.row -->
 

@@ -16,18 +16,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td><a href="/projects/WES-LOG">WES-LOG</a></td>
-              <td>2016-01-29</td>
-              <td><span class="label label-success">COMPLETED</span></td>
-              <td>8</td>
-            </tr>
-            <tr>
-              <td><a href="/projects/WES-LOG">WES-LOG</a></td>
-              <td>2016-01-29</td>
-              <td><span class="label label-success">COMPLETED</span></td>
-              <td>8</td>
-            </tr>
+            @foreach($projectsList as $project)
+              <tr id="{{ $project['code'] }}" class="project-row">
+                <td><a href="/projects/{{ $project['code'] }}">{{ $project['code'] }}</a></td>
+                <td>{{ $project['lastUpdateDate'] }}</td>
+                <td><span class="label label-success">{{ $project['status'] }}</span></td>
+                <td>8</td>
+              </tr>
+            @endforeach
             </tbody>
           </table>
         </div>

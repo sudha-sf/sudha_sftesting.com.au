@@ -15,6 +15,11 @@ class Project extends Model
       return $this->belongsTo('App\Company', 'companyID');
   }
 
+  public function assetObject()
+  {
+    return $this->belongsTo('App\Asset', 'projectID');
+  }
+
   public static function getProjectByAsset($assetID){
     $project = DB::table('projects')
       ->join('assets', 'projects.projectID', '=', 'assets.projectID')
