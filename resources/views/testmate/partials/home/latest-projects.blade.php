@@ -12,7 +12,7 @@
               <th>Project</th>
               <th>Last Update</th>
               <th>Status</th>
-              <th>Testers</th>
+              <th>Testers Amount</th>
             </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                 <td><a href="/projects/{{ $project['code'] }}">{{ $project['code'] }}</a></td>
                 <td>{{ $project['lastUpdateDate'] }}</td>
                 <td><span class="label label-success">{{ $project['status'] }}</span></td>
-                <td>8</td>
+                <td>{{ $project['testersAmount'] }}</td>
               </tr>
             @endforeach
             </tbody>
