@@ -42,7 +42,7 @@
               <td><span class="{{$statusColor}}">{{ $project['status'] }}</span></td>
               <td>{{ $project['lastUpdateDate'] }}</td>
               <td><a href="javascript:;" id="edit_project" onclick="return UpdateProject('{{$project['projectID']}}');">EDIT</a></td>
-              <td><a href="assets/{{ $project['code'] }}">EDIT ASSETS</a></td>
+              <td><a href="{{ url('admin/assets/'.$project['code']) }}">EDIT ASSETS</a></td>
             </tr>
           @endforeach
           </tbody></table>
