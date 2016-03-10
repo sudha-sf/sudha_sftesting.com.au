@@ -23,13 +23,23 @@
             <th>Edit</th>
             <th>Edit Assets</th>
           </tr>
-
           @foreach($projectsList as $project)
               <tr class="project-row">
                 <td>{{ $project['companyObject']['name'] }}</td>
                 <td><a href="../projects/{{ $project['code'] }}">{{ $project['code'] }}</a></td>
                 <td>{{ $project['name'] }}</td>
-                <td><span class="label label-success">{{ $project['status'] }}</span></td>
+                <@if($project['status'] == 'COMPLETED')
+                  <?php $statusColor = 'label label-info' ?>
+                @elseif($project['status'] == 'IN PROGRESS')
+                  <?php $statusColor = 'label label-success' ?>
+                @elseif($project['status'] == 'APPROVAL PENDING')
+                  <?php $statusColor = 'label label-warning' ?>
+                @elseif($project['status'] == 'DELAYED')
+                  <?php $statusColor = 'label label-danger' ?>
+                @else
+                  <?php $statusColor = 'label label-info' ?>
+                @endif
+                <td><span class="{{$statusColor}}">{{ $project['status'] }}</span></td>
                 <td>{{ $project['lastUpdateDate'] }}</td>
                 <td><a href="project/{{ $project['code'] }}">EDIT</a></td>
                 <td><a href="assets/{{ $project['code'] }}">EDIT ASSETS</a></td>

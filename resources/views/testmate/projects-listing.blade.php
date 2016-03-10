@@ -17,7 +17,18 @@
               <tr id="{{ $project['code'] }}" class="project-row">
                 <td>{{ $project['code'] }}</td>
                 <td>{{ $project['name'] }}</td>
-                <td><span class="label label-success">{{ $project['status'] }}</span></td>
+                @if($project['status'] == 'COMPLETED')
+                  <?php $statusColor = 'label label-info' ?>
+                @elseif($project['status'] == 'IN PROGRESS')
+                  <?php $statusColor = 'label label-success' ?>
+                @elseif($project['status'] == 'APPROVAL PENDING')
+                  <?php $statusColor = 'label label-warning' ?>
+                @elseif($project['status'] == 'DELAYED')
+                  <?php $statusColor = 'label label-danger' ?>
+                @else
+                  <?php $statusColor = 'label label-info' ?>
+                @endif
+                <td><span class="{{$statusColor}}">{{ $project['status'] }}</span></td>
                 <td>{{ $project['lastUpdateDate'] }}</td>
                 <td>{{ $project['description'] }}</td>
               </tr>
