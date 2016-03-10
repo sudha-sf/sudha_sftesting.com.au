@@ -22,7 +22,7 @@
       <p>Upcoming dates</p>
     </div>
     <div class="icon">
-      <i class="ion ion-stats-bars"></i>
+      <i class="fa fa-calendar"></i>
     </div>
     <a href="/calendar" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
   </div>
