@@ -20,6 +20,7 @@
             <th>Project</th>
             <th>Status</th>
             <th>Last Update</th>
+            <th>Testers Amount</th>
             <th>Project Brief</th>
             <th>Kick Off Meeting</th>
             <th>Recruitment</th>
@@ -49,6 +50,7 @@
               @endif
               <td><span class="{{$statusColor}}">{{ $project['status'] }}</span></td>
               <td>{{ $project['lastUpdateDate'] }}</td>
+                <td>{{ $project['testersAmount'] }}</td>
                 <td>
                     <div class="progress sm">
                         <div style="width: {{ $project['projectBriefPercentCompleted'] }}%" class="progress-bar progress-bar-aqua"></div>
