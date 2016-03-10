@@ -10,7 +10,7 @@
       </div>
       <!-- Create Form -->
       @include('testmate.partials.project-page.modal-project-form')
-              <!-- /Create Fom-->
+      <!-- /Create Fom-->
       <!-- /.box-header -->
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover" id="projects-table">
@@ -28,7 +28,7 @@
               <td>{{ $project['companyObject']['name'] }}</td>
               <td><a href="../projects/{{ $project['code'] }}">{{ $project['code'] }}</a></td>
               <td>{{ $project['name'] }}</td>
-              <@if($project['status'] == 'COMPLETED')
+              @if($project['status'] == 'COMPLETED')
                 <?php $statusColor = 'label label-info' ?>
               @elseif($project['status'] == 'IN PROGRESS')
                 <?php $statusColor = 'label label-success' ?>
