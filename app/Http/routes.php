@@ -35,9 +35,10 @@ View::composer('shared.main-template', 'App\Http\Composer\MainTemplateComposer')
 
 Route::get('home', [    'middleware' => 'auth',    'uses' => 'HomeController@index']);
 
-
+/*
+ * All route for user project
+ */
 Route::get('projects', [    'middleware' => 'auth',    'uses' => 'ProjectController@index']);
-
 Route::get('projects/{project}', ['middleware' => 'auth',    'uses' => 'ProjectController@showProject' ]);
 
 /*
@@ -59,7 +60,12 @@ Route::get('calendar', [    'middleware' => 'auth',    'uses' => 'ProjectControl
 
 Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\AdminMiddleware'), function()
 {
+    //All route for admin project
     Route::get('admin/projects', ['uses' => 'ProjectController@index' ]);
+    Route::post('admin/projects', ['uses' => 'ProjectController@index']);
+    Route::post('admin/projects/{id}', [ 'uses' => 'ProjectController@index']);
+    Route::get('admin/projects/{id}', [ 'uses' => 'ProjectController@index']);
+    Route::delete('admin/projects/{id}', ['uses' => 'ProjectController@index']);
 
     Route::get('admin/assets/{project}', ['as' => 'project—listing-admin',   'uses' => 'AssetController@index' ]);
 

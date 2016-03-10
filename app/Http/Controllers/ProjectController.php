@@ -23,7 +23,6 @@ class ProjectController extends Controller
 
     return view('testmate.projects-listing', ['projectsList' => $projectsList, 'page_title' => $pageTitle]);
   }
-
   public function showProject($projectCode) {
     $companyID = Auth::user()->companyID;
 

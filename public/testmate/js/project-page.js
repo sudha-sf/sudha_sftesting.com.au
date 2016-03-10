@@ -3,6 +3,11 @@ $(document).ready(function() {
         var main_box = $('.main-comments');
         main_box .scrollTop(main_box .prop('scrollHeight'));
     });
+    $('.create_project').click(function(){
+        $('#projectCreate').modal({
+            keyboard: false
+        });
+    });
   $(".products-list .asset-VIDEO a.asset-item").click(function(e) {
     var id = $(this).attr("id")  ;
     var url = $(this).attr("href")  ;
@@ -49,6 +54,9 @@ $(document).ready(function() {
         $('#contentPost').val('');
         $('#projectModal').modal('toggle');
     });
+    $('.cancelProject').click(function(){
+        $('#projectCreate').modal('toggle');
+    });
 });
 <!-- Define base url -->
 function baseUrl(){
@@ -59,6 +67,29 @@ function baseUrl(){
     return url;
 }
 
+function UpdateProject(projectID){
+    var URL = baseUrl()+'/admin/projects/'+projectID;
+    $.ajax({
+        url:URL,
+        method: 'GET',
+        data: 'projectID='+projectID,
+        dataType: 'json',
+        success: function(result){
+            if(result != undefined &&result != null)
+            $('#create_project').attr('action',URL);
+            $('#create_project').attr('enctype','application/x-www-form-urlencoded');
+            $('#name').val(result.name);
+            $('#description').val(result.description);
+            $('#startingDate').val(result.startingDate);
+            $('#testersAmount').val(result.testersAmount);
+            $('#projectCreate').modal({
+                keyboard: false
+            });
+            $('#create_project').after().append('<input type="hidden" name="projectID" value="'+projectID+'" />');
+        }
+    });
+
+}
 <!-- Get all comments in a asset-->
 function getAllComments(assetID){
     $.ajax({

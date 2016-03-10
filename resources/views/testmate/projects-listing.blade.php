@@ -3,7 +3,6 @@
 @section('content')
 <div class="col-xs-12">
     <div class="box">
-
       <!-- /.box-header -->
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover" id="projects-table">
@@ -14,12 +13,22 @@
             <th>Last Update</th>
             <th>Description</th>
           </tr>
-
           @foreach($projectsList as $project)
               <tr id="{{ $project['code'] }}" class="project-row">
                 <td>{{ $project['code'] }}</td>
                 <td>{{ $project['name'] }}</td>
-                <td><span class="label label-success">{{ $project['status'] }}</span></td>
+                @if($project['status'] == 'COMPLETED')
+                  <?php $statusColor = 'label label-info' ?>
+                @elseif($project['status'] == 'IN PROGRESS')
+                  <?php $statusColor = 'label label-success' ?>
+                @elseif($project['status'] == 'APPROVAL PENDING')
+                  <?php $statusColor = 'label label-warning' ?>
+                @elseif($project['status'] == 'DELAYED')
+                  <?php $statusColor = 'label label-danger' ?>
+                @else
+                  <?php $statusColor = 'label label-info' ?>
+                @endif
+                <td><span class="{{$statusColor}}">{{ $project['status'] }}</span></td>
                 <td>{{ $project['lastUpdateDate'] }}</td>
                 <td>{{ $project['description'] }}</td>
               </tr>
