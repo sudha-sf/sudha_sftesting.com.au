@@ -10,6 +10,13 @@ class Project extends Model
   protected $primaryKey = 'projectID';
   public $timestamps = false;
 
+  protected $fillable = [
+      'companyID', 'name', 'description', 'startingDate', 'lastUpdateDate', 'status', 'code', 'userID', 'adminID',
+      'testersAmount', 'projectBriefPercentCompleted', 'kickOffMeetingPercentCompleted', 'recruitmentPercentCompleted',
+      'userTestPlanPercentCompleted', 'userTestingPercentCompleted', 'resultsAnalysisPercentCompleted',
+      'preliminaryFindingsPercentCompleted', 'finalReportPercentCompleted', 'highlightsVideoPercentCompleted', 'susScore'
+  ];
+
   public function companyObject()
   {
       return $this->belongsTo('App\Company', 'companyID');

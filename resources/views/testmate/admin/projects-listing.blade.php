@@ -5,9 +5,12 @@
     <div class="box">
       <div class="box-header">
         <div class="box-header">
-          <h3 class="box-title"><a href="/project-admin/create" class="btn btn-default">New Project</a></h3>
+          <h3 class="box-title"><a href="javascript:void();" class="btn btn-default create_project">New Project</a></h3>
         </div>
       </div>
+      <!-- Create Form -->
+      @include('testmate.partials.project-page.modal-project-form')
+      <!-- /Create Fom-->
       <!-- /.box-header -->
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover" id="projects-table">
@@ -38,4 +41,5 @@
     </div>
     <!-- /.box -->
   </div>
+<script type="text/javascript" src="/testmate/js/project-page.js"></script>
 @endsection

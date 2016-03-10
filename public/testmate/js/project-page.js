@@ -3,6 +3,11 @@ $(document).ready(function() {
         var main_box = $('.main-comments');
         main_box .scrollTop(main_box .prop('scrollHeight'));
     });
+    $('.create_project').click(function(){
+        $('#projectCreate').modal({
+            keyboard: false
+        });
+    });
   $(".products-list .asset-VIDEO a.asset-item").click(function(e) {
     var id = $(this).attr("id")  ;
     var url = $(this).attr("href")  ;

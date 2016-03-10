@@ -3,7 +3,6 @@
 @section('content')
 <div class="col-xs-12">
     <div class="box">
-
       <!-- /.box-header -->
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover" id="projects-table">
@@ -14,7 +13,6 @@
             <th>Last Update</th>
             <th>Description</th>
           </tr>
-
           @foreach($projectsList as $project)
               <tr id="{{ $project['code'] }}" class="project-row">
                 <td>{{ $project['code'] }}</td>
