@@ -29,6 +29,7 @@ class ProjectController extends Controller
      * Process create/update project
      */
     if($request->isMethod('post') && !$request->get('projectID')){
+      //In the case create a new project
       $params = $request->all();
       $project = new Project();
       $project->companyID = Auth::user()->companyID;
@@ -43,6 +44,7 @@ class ProjectController extends Controller
       $project->lastUpdateDate = date('Y-m-d');
       $project->save();
     }elseif($request->isMethod('post') && $request->get('projectID')){
+      //In the case update for existing project
       $params = $request->all();
       $project = Project::where(array('projectID'=>$params['projectID']))->get()->first();
       $project->name = $params['name'];
@@ -51,13 +53,15 @@ class ProjectController extends Controller
       $project->testersAmount = $params['testersAmount'];
       $project->save();
     }elseif($request->isMethod('delete')){
-
+      //In the case for delete project
     }elseif($request->isMethod('get') && $request->get('projectID') != null){
+      //In the case get project info for only one project
       $projectInfo = Project::where(array('projectID'=>$request->get('projectID')))->get()->first();
       return json_encode($projectInfo);
     }else{
-
+      //In some other case
     }
+    //Get all projects from database for a company
     $projectsList = Project::with('companyObject')->get();
     return view('testmate.admin.projects-listing', ['projectsList' => $projectsList, 'page_title' => $pageTitle]);
   }
