@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-      @include('testmate.partials.home.project-boxes')
+      @include('testmate.partials.home.project-boxes', array('totalUsertest'=>$totalUsertest))
     </div>
 
     <div class='row'>

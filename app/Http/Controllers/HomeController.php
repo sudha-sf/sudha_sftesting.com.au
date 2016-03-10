@@ -28,13 +28,17 @@ class HomeController extends Controller
                         }
                     }
                 }
+                //Total user test for each project belong to user's company
+                $totalUsertest = DB::table('projects')->where(array('companyID'=>$companyID))->sum('testersAmount');
             }
         }else{
             $projectsList = Project::all();
             $assetList = Asset::all();
+            //Total user test for each project
+            $totalUsertest = DB::table('projects')->sum('testersAmount');
         }
 
-       return view('testmate.home', ['projectsList' => $projectsList, 'assetList' => $assetList]);
+       return view('testmate.home', ['projectsList' => $projectsList, 'assetList' => $assetList, 'totalUsertest'=> $totalUsertest]);
     }
 
     public function projectAssetList()
