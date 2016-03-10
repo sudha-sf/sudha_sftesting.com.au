@@ -28,7 +28,7 @@ class ProjectController extends Controller
     /*
      * Process create/update project
      */
-    if($request->isMethod('post')){
+    if($request->isMethod('post') && !$request->get('projectID')){
       $params = $request->all();
       $project = new Project();
       $project->companyID = Auth::user()->companyID;
@@ -42,9 +42,20 @@ class ProjectController extends Controller
       $project->adminID = (Auth::user()->isCompanyAdmin == 1? Auth::user()->userID: null);
       $project->lastUpdateDate = date('Y-m-d');
       $project->save();
-    }elseif($request->isMethod('put')){
-
+    }elseif($request->isMethod('post') && $request->get('projectID')){
+      $params = $request->all();
+      $project = Project::where(array('projectID'=>$params['projectID']))->get()->first();
+      $project->name = $params['name'];
+      $project->description = $params['description'];
+      $project->startingDate = date('Y-m-d',strtotime($params['startingDate']));
+      $project->testersAmount = $params['testersAmount'];
+      $project->save();
     }elseif($request->isMethod('delete')){
+
+    }elseif($request->isMethod('get') && $request->get('projectID') != null){
+      $projectInfo = Project::where(array('projectID'=>$request->get('projectID')))->get()->first();
+      return json_encode($projectInfo);
+    }else{
 
     }
     $projectsList = Project::with('companyObject')->get();

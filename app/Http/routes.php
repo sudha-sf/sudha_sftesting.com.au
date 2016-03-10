@@ -63,7 +63,8 @@ Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\Ad
     //All route for admin project
     Route::get('admin/projects', ['uses' => 'ProjectController@index' ]);
     Route::post('admin/projects', ['uses' => 'ProjectController@index']);
-    Route::put('admin/projects/{id}', [ 'uses' => 'ProjectController@index']);
+    Route::post('admin/projects/{id}', [ 'uses' => 'ProjectController@index']);
+    Route::get('admin/projects/{id}', [ 'uses' => 'ProjectController@index']);
     Route::delete('admin/projects/{id}', ['uses' => 'ProjectController@index']);
 
     Route::get('admin/assets/{project}', ['as' => 'project—listing-admin',   'uses' => 'AssetController@index' ]);
