@@ -15,7 +15,11 @@
                      <?php break; ?>
                 @endif
               <li class="item asset-DOCUMENT">
-                <a href="projects/WES-LOG/asset/{{$asset->assetID}}" target="_blank" class=" asset-item" id="6" asset-type="{{$asset->assetType}}">
+                @if($asset->assetType === 'VIDEO')
+                    <a href="projects/WES-LOG/asset/{{$asset->assetID}}" target="_blank" class=" asset-item" id="{{$asset->assetID}}" asset-type="{{$asset->assetType}}">
+                @else
+                    <a href="{{$asset->url}}" target="_blank" class=" asset-item" id="{{$asset->assetID}}" asset-type="{{$asset->assetType}}">
+                @endif
                 <div class="asset-image product-DOCUMENT"></div>
                 <div class="product-info">
                     <span class="product-title">{{$asset->name}}</span>
