@@ -68,6 +68,8 @@ Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\Ad
     Route::delete('admin/projects/{id}', ['uses' => 'ProjectController@index']);
     //All route for admin companies
     Route::get('admin/companies', ['uses' => 'CompanyController@index' ]);
+    //All route for admin users
+    Route::get('admin/users', ['uses' => 'UserController@index' ]);
     //All route for admin assets
     Route::get('admin/assets/{project}', ['as' => 'project—listing-admin',   'uses' => 'AssetController@index' ]);
 

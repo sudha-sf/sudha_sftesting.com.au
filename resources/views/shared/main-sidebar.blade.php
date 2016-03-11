@@ -16,8 +16,9 @@
         $companyID = Auth::user()->companyID;
         if(TESTMATE_COMPANY_ID == $companyID){ ?>
           <li class="header">ADMIN</li>
-          <li><a href="/admin/companies"><i class="fa fa fa-users"></i> <span>Companies</span></a></li>
-          <li><a href="/admin/projects"><i class="fa fa-th"></i> <span>Projects</span></a></li>
+          <li><a href="{{url('/admin/companies')}}"><i class="fa fa fa-users"></i> <span>Companies</span></a></li>
+          <li><a href="{{url('/admin/users')}}"><i class="fa fa-users"></i> <span>Users</span></a></li>
+          <li><a href="{{url('/admin/projects')}}"><i class="fa fa-th"></i> <span>Projects</span></a></li>
         <?php } ?>
     </ul>
     <!-- /.sidebar-menu -->
