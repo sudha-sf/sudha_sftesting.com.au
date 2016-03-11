@@ -3,7 +3,7 @@
 @section('content')
 <div class='row'>
   <div class="col-md-6">
-      @include('testmate.partials.project-page.project-status')
+      @include('testmate.partials.project-page.project-status', array('project'=>$project))
       @include('testmate.partials.project-page.project-assets')
     </div>
     <div class="col-md-6">
