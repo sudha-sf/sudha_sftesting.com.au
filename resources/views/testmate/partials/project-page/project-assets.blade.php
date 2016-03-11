@@ -8,6 +8,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+          <input type="hidden" id="assetID" value="{{$assetID}}"/>
           <ul class="products-list product-list-in-box">
 
             <?php echo $filesHtml; ?>

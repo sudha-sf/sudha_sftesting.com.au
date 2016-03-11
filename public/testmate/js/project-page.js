@@ -128,3 +128,10 @@ function GetVideo(url, name){
     keyboard: false
   });
 }
+
+window.onload = function(){
+    if($('#assetID').val() != null){
+        var assetID = $('#assetID').val();
+        $(".products-list .asset-VIDEO a#"+assetID).click();
+    }
+}

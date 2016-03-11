@@ -23,7 +23,7 @@ class ProjectController extends Controller
 
     return view('testmate.projects-listing', ['projectsList' => $projectsList, 'page_title' => $pageTitle]);
   }
-  public function showProject($projectCode) {
+  public function showProject($projectCode, $assetID = null) {
     $companyID = Auth::user()->companyID;
 
     if(TESTMATE_COMPANY_ID != $companyID){
@@ -32,11 +32,10 @@ class ProjectController extends Controller
       $project = Project::where('code', $projectCode)->firstOrFail();
     }
 
-
     $assetsHtml = $this->formatAssetsList($project);
 
     $pageTitle = $project->name. " Project";
-    return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle]);
+    return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle, 'assetID' =>$assetID]);
   }
 
 

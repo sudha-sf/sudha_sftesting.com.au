@@ -50,6 +50,10 @@ Route::get('comments/{assetID}', [    'middleware' => 'auth',    'uses' => 'Comm
  */
 Route::post('comments/{assetID}', [    'middleware' => 'auth',    'uses' => 'CommentController@post']);
 
+/*
+ * Show asset detail
+ */
+Route::get('projects/{project}/asset/{assetID}',['middleware' => 'auth',    'uses' => 'ProjectController@showProject' ]);
 
 Route::get('calendar', [    'middleware' => 'auth',    'uses' => 'ProjectController@calendar']);
 

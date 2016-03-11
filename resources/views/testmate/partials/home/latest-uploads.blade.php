@@ -15,7 +15,7 @@
                      <?php break; ?>
                 @endif
               <li class="item asset-DOCUMENT">
-                <a href="/projects/{{$asset->url}}" target="_blank" class=" asset-item" id="6" asset-type="{{$asset->assetType}}">
+                <a href="projects/WES-LOG/asset/{{$asset->assetID}}" target="_blank" class=" asset-item" id="6" asset-type="{{$asset->assetType}}">
                 <div class="asset-image product-DOCUMENT"></div>
                 <div class="product-info">
                     <span class="product-title">{{$asset->name}}</span>
