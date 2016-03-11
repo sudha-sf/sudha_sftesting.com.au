@@ -14,13 +14,13 @@
                 @if($i == 5)
                      <?php break; ?>
                 @endif
-              <li class="item asset-DOCUMENT">
+              <li class="item {{$asset->assetType == 'DOCUMENT'?'asset-DOCUMENT':'asset-VIDEO'}}">
                 @if($asset->assetType === 'VIDEO')
                     <a href="projects/WES-LOG/asset/{{$asset->assetID}}" target="_blank" class=" asset-item" id="{{$asset->assetID}}" asset-type="{{$asset->assetType}}">
                 @else
                     <a href="{{$asset->url}}" target="_blank" class=" asset-item" id="{{$asset->assetID}}" asset-type="{{$asset->assetType}}">
                 @endif
-                <div class="asset-image product-DOCUMENT"></div>
+                <div class="asset-image {{$asset->assetType == 'DOCUMENT'?'product-DOCUMENT':'product-VIDEO'}}"></div>
                 <div class="product-info">
                     <span class="product-title">{{$asset->name}}</span>
                     <span class="label  pull-right">{{$asset->status}}</span>
