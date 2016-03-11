@@ -21,14 +21,6 @@
             <th>Status</th>
             <th>Last Update</th>
             <th>Testers Amount</th>
-            <th>Project Brief</th>
-            <th>Kick Off Meeting</th>
-            <th>Recruitment</th>
-            <th>User Test Plan</th>
-            <th>User Testing</th>
-            <th>Results Analysis</th>
-            <th>Preliminary Findings</th>
-            <th>Final Report</th>
             <th>Edit</th>
             <th>Edit Assets</th>
           </tr>
@@ -50,47 +42,7 @@
               @endif
               <td><span class="{{$statusColor}}">{{ $project['status'] }}</span></td>
               <td>{{ $project['lastUpdateDate'] }}</td>
-                <td>{{ $project['testersAmount'] }}</td>
-                <td>
-                    <div class="progress sm">
-                        <div style="width: {{ $project['projectBriefPercentCompleted'] }}%" class="progress-bar progress-bar-aqua"></div>
-                    </div>
-                </td>
-                <td>
-                    <div class="progress sm">
-                        <div style="width: {{ $project['kickOffMeetingPercentCompleted'] }}%" class="progress-bar progress-bar-green"></div>
-                    </div>
-                </td>
-                <td>
-                    <div class="progress sm">
-                        <div style="width: {{ $project['recruitmentPercentCompleted'] }}%" class="progress-bar progress-bar-aqua"></div>
-                    </div>
-                </td>
-                <td>
-                    <div class="progress sm">
-                        <div style="width: {{ $project['userTestPlanPercentCompleted'] }}%" class="progress-bar progress-bar-green"></div>
-                    </div>
-                </td>
-                <td>
-                    <div class="progress sm">
-                        <div style="width: {{ $project['userTestingPercentCompleted'] }}%" class="progress-bar progress-bar-aqua"></div>
-                    </div>
-                </td>
-                <td>
-                    <div class="progress sm">
-                        <div style="width: {{ $project['resultsAnalysisPercentCompleted'] }}%" class="progress-bar progress-bar-green"></div>
-                    </div>
-                </td>
-                <td>
-                    <div class="progress sm">
-                        <div style="width: {{ $project['preliminaryFindingsPercentCompleted'] }}%" class="progress-bar progress-bar-aqua"></div>
-                    </div>
-                </td>
-                <td>
-                    <div class="progress sm">
-                        <div style="width: {{ $project['finalReportPercentCompleted'] }}%" class="progress-bar progress-bar-green"></div>
-                    </div>
-                </td>
+              <td>{{ $project['testersAmount'] }}</td>
               <td><a href="javascript:;" id="edit_project" onclick="return UpdateProject('{{$project['projectID']}}');">EDIT</a></td>
               <td><a href="{{ url('admin/assets/'.$project['code']) }}">EDIT ASSETS</a></td>
             </tr>
