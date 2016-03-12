@@ -48,3 +48,8 @@ h3.heading-comment {
     display: inline-block;
 }
 /*------------ ASSET FORM END */
+/*------------ IMG LOGO */
+.logo{
+    max-width: 150px;
+    max-height: 50px;
+}
