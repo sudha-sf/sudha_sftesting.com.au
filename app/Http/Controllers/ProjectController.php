@@ -33,9 +33,11 @@ class ProjectController extends Controller
     }
 
     $assetsHtml = $this->formatAssetsList($project);
+    //Total user test for each project belong to user's company
+    $userTest = DB::table('projects')->where(array('companyID'=>$companyID))->sum('testersAmount');
 
     $pageTitle = $project->name. " Project";
-    return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle, 'assetID' =>$assetID]);
+    return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle, 'assetID' =>$assetID,'userTest' => $userTest]);
   }
 
 
