@@ -12,57 +12,93 @@ use Illuminate\Support\Facades\Auth;
 class ProjectController extends Controller
 {
   /**
-   * Process get project list || Create, Update and Delete project information
-   *
-   * We will using API concept then we can use a function for all method(GET|POST|PUT|DELETE)
-   *
-   * @POST("/projects/") to create project info
-   * @PUT("/projects/{id}") to update project info
-   * @GET("/projects") to get the list with all project
-   * @DELETE("/projects/id") to delete a project
-   * @Param ({id : this is ID of project})
+   * Process get project list
+   * @GET("/admin/projects") to get the list with all project
    * @Versions({"v1"})
    */
   public function index(Request $request) {
     $pageTitle = "ADMIN - Projects";
-    /*
-     * Process create/update project
-     */
-    if($request->isMethod('post') && !$request->get('projectID')){
-      //In the case create a new project
-      $params = $request->all();
-      $project = new Project();
-      $project->companyID = Auth::user()->companyID;
-      $project->name = $params['name'];
-      $project->code = 'WES-'.strtoupper($params['name']);
-      $project->description = $params['description'];
-      $project->startingDate = date('Y-m-d',strtotime($params['startingDate']));
-      $project->testersAmount = $params['testersAmount'];
-      $project->status = 'APPROVAL PENDING';
-      $project->userID = Auth::user()->userID;
-      $project->adminID = (Auth::user()->isCompanyAdmin == 1? Auth::user()->userID: null);
-      $project->lastUpdateDate = date('Y-m-d');
-      $project->save();
-    }elseif($request->isMethod('post') && $request->get('projectID')){
-      //In the case update for existing project
-      $params = $request->all();
-      $project = Project::where(array('projectID'=>$params['projectID']))->get()->first();
-      $project->name = $params['name'];
-      $project->description = $params['description'];
-      $project->startingDate = date('Y-m-d',strtotime($params['startingDate']));
-      $project->testersAmount = $params['testersAmount'];
-      $project->save();
-    }elseif($request->isMethod('delete')){
-      //In the case for delete project
-    }elseif($request->isMethod('get') && $request->get('projectID') != null){
-      //In the case get project info for only one project
-      $projectInfo = Project::where(array('projectID'=>$request->get('projectID')))->get()->first();
-      return json_encode($projectInfo);
-    }else{
-      //In some other case
-    }
     //Get all projects from database for a company
     $projectsList = Project::with('companyObject')->get();
     return view('testmate.admin.projects-listing', ['projectsList' => $projectsList, 'page_title' => $pageTitle]);
+  }
+  /*
+   * Create new project
+   *
+   * @POST('/admin/projects')
+   * @Params({'companyID', 'name', 'description', 'startingDate', 'lastUpdateDate', 'status', 'code', 'userID', 'adminID',
+   *   'testersAmount', 'projectBriefPercentCompleted', 'kickOffMeetingPercentCompleted', 'recruitmentPercentCompleted',
+   *  'userTestPlanPercentCompleted', 'userTestingPercentCompleted', 'resultsAnalysisPercentCompleted',
+   * 'preliminaryFindingsPercentCompleted', 'finalReportPercentCompleted', 'highlightsVideoPercentCompleted', 'susScore'})
+   * @Version({'v1'})
+   */
+  public function create(Request $request)
+  {
+    $params = $request->all();
+    $project = new Project();
+    $project->companyID = Auth::user()->companyID;
+    $project->name = $params['name'];
+    $project->code = 'WES-'.strtoupper($params['name']);
+    $project->description = $params['description'];
+    $project->startingDate = date('Y-m-d',strtotime($params['startingDate']));
+    $project->testersAmount = $params['testersAmount'];
+    $project->status = 'APPROVAL PENDING';
+    $project->projectBriefPercentCompleted = $params['projectBriefPercentCompleted'];
+    $project->kickOffMeetingPercentCompleted = $params['kickOffMeetingPercentCompleted'];
+    $project->recruitmentPercentCompleted = $params['recruitmentPercentCompleted'];
+    $project->userTestPlanPercentCompleted = $params['userTestPlanPercentCompleted'];
+    $project->userTestingPercentCompleted = $params['userTestingPercentCompleted'];
+    $project->resultsAnalysisPercentCompleted = $params['resultsAnalysisPercentCompleted'];
+    $project->preliminaryFindingsPercentCompleted = $params['preliminaryFindingsPercentCompleted'];
+    $project->finalReportPercentCompleted = $params['finalReportPercentCompleted'];
+    $project->highlightsVideoPercentCompleted = $params['highlightsVideoPercentCompleted'];
+    $project->userID = Auth::user()->userID;
+    $project->adminID = (Auth::user()->isCompanyAdmin == 1? Auth::user()->userID: null);
+    $project->lastUpdateDate = date('Y-m-d');
+    $project->save();
+
+    return json_encode(array('status'=>true,'massage'=>'Create new project successfully!'));
+  }
+  /*
+   * Update a project
+   *
+   * @PUT('/admin/projects/{projectID}')
+   * @Params({'companyID', 'name', 'description', 'startingDate', 'lastUpdateDate', 'status', 'code', 'userID', 'adminID',
+   *   'testersAmount', 'projectBriefPercentCompleted', 'kickOffMeetingPercentCompleted', 'recruitmentPercentCompleted',
+   *  'userTestPlanPercentCompleted', 'userTestingPercentCompleted', 'resultsAnalysisPercentCompleted',
+   * 'preliminaryFindingsPercentCompleted', 'finalReportPercentCompleted', 'highlightsVideoPercentCompleted', 'susScore'})
+   * @Version({'v1'})
+   */
+  public function update($projectID, Request $request)
+  {
+    $params = $request->all();
+
+    $project = Project::where(array('projectID'=>$projectID))->get()->first();
+    $project->name = $params['name'];
+    $project->description = $params['description'];
+    $project->startingDate = date('Y-m-d',strtotime($params['startingDate']));
+    $project->status = $params['status'];
+    $project->testersAmount = $params['testersAmount'];
+    $project->projectBriefPercentCompleted = $params['projectBriefPercentCompleted'];
+    $project->kickOffMeetingPercentCompleted = $params['kickOffMeetingPercentCompleted'];
+    $project->recruitmentPercentCompleted = $params['recruitmentPercentCompleted'];
+    $project->userTestPlanPercentCompleted = $params['userTestPlanPercentCompleted'];
+    $project->userTestingPercentCompleted = $params['userTestingPercentCompleted'];
+    $project->resultsAnalysisPercentCompleted = $params['resultsAnalysisPercentCompleted'];
+    $project->preliminaryFindingsPercentCompleted = $params['preliminaryFindingsPercentCompleted'];
+    $project->finalReportPercentCompleted = $params['finalReportPercentCompleted'];
+    $project->highlightsVideoPercentCompleted = $params['highlightsVideoPercentCompleted'];
+    $project->save();
+
+    return json_encode(array('status'=>true,'massage'=>'Updated project successfully!'));
+  }
+  /*
+   * Show project ìnoformation
+   */
+  public function show($projectID)
+  {
+    $projectInfo = Project::where(array('projectID'=>$projectID))->get()->first();
+
+    return json_encode($projectInfo);
   }
 }

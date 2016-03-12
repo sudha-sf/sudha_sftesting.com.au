@@ -1,12 +1,20 @@
 $(document).ready(function() {
+    $('.project-status').hide();
     $('#projectModal').on('shown.bs.modal', function () {
         var main_box = $('.main-comments');
         main_box .scrollTop(main_box .prop('scrollHeight'));
     });
+    //Open project form to create a new project
     $('.create_project').click(function(){
         $('#projectCreate').modal({
             keyboard: false
         });
+    });
+    //Include date picker for input form
+    $.fn.datepicker.defaults.format = "yyyy-mm-dd";
+    $('#datePicker input').datepicker({
+        startDate: '-3d',
+        autoclose: true,
     });
   $(".products-list .asset-VIDEO a.asset-item").click(function(e) {
     var id = $(this).attr("id")  ;
@@ -66,30 +74,6 @@ function baseUrl(){
     url = protocol + '//' + host;
     return url;
 }
-
-function UpdateProject(projectID){
-    var URL = baseUrl()+'/admin/projects/'+projectID;
-    $.ajax({
-        url:URL,
-        method: 'GET',
-        data: 'projectID='+projectID,
-        dataType: 'json',
-        success: function(result){
-            if(result != undefined &&result != null)
-            $('#create_project').attr('action',URL);
-            $('#create_project').attr('enctype','application/x-www-form-urlencoded');
-            $('#name').val(result.name);
-            $('#description').val(result.description);
-            $('#startingDate').val(result.startingDate);
-            $('#testersAmount').val(result.testersAmount);
-            $('#projectCreate').modal({
-                keyboard: false
-            });
-            $('#create_project').after().append('<input type="hidden" name="projectID" value="'+projectID+'" />');
-        }
-    });
-
-}
 <!-- Get all comments in a asset-->
 function getAllComments(assetID){
     $.ajax({
@@ -128,10 +112,88 @@ function GetVideo(url, name){
     keyboard: false
   });
 }
-
+//Open lightbox in the case access asset from home-dashboard
 window.onload = function(){
     if($('#assetID').val() != null){
         var assetID = $('#assetID').val();
         $(".products-list .asset-VIDEO a#"+assetID).click();
     }
+}
+//Create/Update project for admin user
+$('.submit_project').click(function(e){
+    var Url = null;
+    var dataObj = new FormData();
+    dataObj.append( 'name', $('#name').val() );
+    dataObj.append( 'description', $('#description').val() );
+    dataObj.append( 'startingDate', $('#startingDate').val() );
+    dataObj.append( 'testersAmount', $('#testersAmount').val() );
+    dataObj.append( 'projectBriefPercentCompleted', $('#projectBriefPercentCompleted').val() );
+    dataObj.append( 'kickOffMeetingPercentCompleted', $('#kickOffMeetingPercentCompleted').val() );
+    dataObj.append( 'recruitmentPercentCompleted', $('#recruitmentPercentCompleted').val() );
+    dataObj.append( 'userTestPlanPercentCompleted', $('#userTestPlanPercentCompleted').val() );
+    dataObj.append( 'userTestingPercentCompleted', $('#userTestingPercentCompleted').val() );
+    dataObj.append( 'resultsAnalysisPercentCompleted', $('#resultsAnalysisPercentCompleted').val() );
+    dataObj.append( 'preliminaryFindingsPercentCompleted', $('#preliminaryFindingsPercentCompleted').val() );
+    dataObj.append( 'finalReportPercentCompleted', $('#finalReportPercentCompleted').val() );
+    dataObj.append( 'highlightsVideoPercentCompleted', $('#highlightsVideoPercentCompleted').val() );
+    dataObj.append( 'status', $('#status').val() );
+    if($('#projectID').val() != undefined && $('#projectID').val() != null){
+        Url = baseUrl()+'/admin/projects/'+$('#projectID').val();
+    }else{
+        Url = baseUrl()+'/admin/projects/';
+    }
+    return submitProject(dataObj, Url);
+    e.preventDefault();
+});
+//Show & Update project
+function UpdateProject(projectID){
+    var URL = baseUrl()+'/admin/projects/'+projectID;
+    $.ajax({
+        url:URL,
+        method: 'GET',
+        dataType: 'json',
+        success: function(result){
+            if(result != undefined &&result != null){
+                $('#create_project').attr('action',URL);
+                $('#create_project').attr('method','PUT');
+                $('#create_project').attr('enctype','application/x-www-form-urlencoded');
+                $('#name').val(result.name);
+                $('#description').val(result.description);
+                $('#startingDate').val(result.startingDate);
+                $('#testersAmount').val(result.testersAmount);
+                $('#projectBriefPercentCompleted').val(result.projectBriefPercentCompleted);
+                $('#kickOffMeetingPercentCompleted').val(result.kickOffMeetingPercentCompleted);
+                $('#recruitmentPercentCompleted').val(result.recruitmentPercentCompleted);
+                $('#userTestPlanPercentCompleted').val(result.userTestPlanPercentCompleted);
+                $('#userTestingPercentCompleted').val(result.userTestingPercentCompleted);
+                $('#resultsAnalysisPercentCompleted').val(result.resultsAnalysisPercentCompleted);
+                $('#preliminaryFindingsPercentCompleted').val(result.preliminaryFindingsPercentCompleted);
+                $('#finalReportPercentCompleted').val(result.finalReportPercentCompleted);
+                $('#highlightsVideoPercentCompleted').val(result.highlightsVideoPercentCompleted);
+                $('#status').val(result.status);
+                $('.project-status').show();
+                $('#projectCreate').modal({
+                    keyboard: false
+                });
+                $('#create_project').after().append('<input type="hidden" id="projectID" name="projectID" value="'+projectID+'" />');
+            }
+        }
+    });
+
+}
+//Submit & save form information
+function submitProject(dataObj, Url){
+    $.ajax({
+        url : Url,
+        method: 'POST',
+        data: dataObj,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: function(result){
+            if(result.status == true){
+                window.location.reload();
+            }
+        }
+    });
 }

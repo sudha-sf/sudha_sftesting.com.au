@@ -32,7 +32,7 @@
                               <div class="form-group">
                                   <label class="col-sm-2 control-label" for="inputPassword3">Start Date</label>
 
-                                  <div class="col-sm-10">
+                                  <div class="col-sm-3" id="datePicker">
                                       <input type="text" data-mask="" data-inputmask="'alias': 'dd/mm/yyyy'" class="form-control" id="startingDate" name="startingDate" required>
                                   </div>
                               </div>
@@ -43,11 +43,287 @@
                                       <input type="text" placeholder="Please select a date" id="testersAmount" name="testersAmount" class="form-control" required>
                                   </div>
                               </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">Project Brief</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="projectBriefPercentCompleted" name="projectBriefPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">Kick Off Meeting</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="kickOffMeetingPercentCompleted" name="kickOffMeetingPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">Recruitment</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="recruitmentPercentCompleted" name="recruitmentPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">User Test Plan</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="userTestPlanPercentCompleted" name="userTestPlanPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">User Testing</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="userTestingPercentCompleted" name="userTestingPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">Results Analysis</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="resultsAnalysisPercentCompleted" name="resultsAnalysisPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">Preliminary Findings</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="preliminaryFindingsPercentCompleted" name="preliminaryFindingsPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">Final Rep</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="finalReportPercentCompleted" name="finalReportPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">Highlights Video</label>
+
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="highlightsVideoPercentCompleted" name="highlightsVideoPercentCompleted">
+                                              <option value="0">0%</option>
+                                              <option value="5">5%</option>
+                                              <option value="10">10%</option>
+                                              <option value="15">15%</option>
+                                              <option value="20">20%</option>
+                                              <option value="25">25%</option>
+                                              <option value="30">30%</option>
+                                              <option value="35">35%</option>
+                                              <option value="40">40%</option>
+                                              <option value="45">45%</option>
+                                              <option value="50">50%</option>
+                                              <option value="55">55%</option>
+                                              <option value="60">60%</option>
+                                              <option value="65">65%</option>
+                                              <option value="70">70%</option>
+                                              <option value="75">75%</option>
+                                              <option value="80">80%</option>
+                                              <option value="85">85%</option>
+                                              <option value="90">90%</option>
+                                              <option value="95">95%</option>
+                                              <option value="100">100%</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group project-status">
+                                      <label class="col-sm-4 control-label" for="inputPassword3">Project Status</label>
+                                      <div class="col-sm-8">
+                                          <select class="form-control" id="status" name="status">
+                                              <option value="APPROVAL PENDING">APPROVAL PENDING</option>
+                                              <option value="IN PROGRESS">IN PROGRESS</option>
+                                              <option value="COMPLETED">COMPLETED</option>
+                                              <option value="DELAYED">DELAYED</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
                           </div>
                           <!-- /.box-body -->
                           <div class="box-footer">
                               <button class="btn btn-default cancelProject" type="button">Cancel</button>
-                              <button class="btn btn-info pull-right" type="submit">Save</button>
+                              <button class="btn btn-info pull-right submit_project" type="button">Save</button>
                           </div>
                           <!-- /.box-footer -->
                       </form>
