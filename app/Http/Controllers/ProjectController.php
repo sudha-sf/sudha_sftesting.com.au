@@ -33,11 +33,9 @@ class ProjectController extends Controller
     }
 
     $assetsHtml = $this->formatAssetsList($project);
-    //Total user test for each project belong to user's company
-    $userTest = DB::table('projects')->where(array('companyID'=>$companyID))->sum('testersAmount');
 
     $pageTitle = $project->name. " Project";
-    return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle, 'assetID' =>$assetID,'userTest' => $userTest]);
+    return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle, 'assetID' =>$assetID]);
   }
 
 
@@ -108,12 +106,19 @@ class ProjectController extends Controller
     $companyID = Auth::user()->companyID;
 
     if(TESTMATE_COMPANY_ID != $companyID){
-      $projectsList = Project::where('companyID', '=', $companyID)->get();
+      $projectsList = Project::where('status', '!=', 'COMPLETED')
+                            ->where('companyID', '=', $companyID)
+                            ->get();
     }else{
-      $projectsList = Project::all();
+      $projectsList = Project::where('status', '!=', 'COMPLETED')->get();
     }
 
-    return view('testmate.calendar', ['projectsList' => $projectsList, 'page_title' => $pageTitle]);
+    for ($i = 0; $i < count($projectsList); $i++) {
+        $projectsList[$i]->assets = Asset::where('projectID', $projectsList[$i]->projectID)
+                                        ->where('assetType','TIMELINE')
+                                        ->get();
+    }
+    return view('testmate.calendar', ['projectsList' => $projectsList, 'projectsList' => $projectsList, 'page_title' => $pageTitle]);
   }
 
 }

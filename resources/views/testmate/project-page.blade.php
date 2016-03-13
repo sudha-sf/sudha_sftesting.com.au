@@ -7,7 +7,7 @@
       @include('testmate.partials.project-page.project-assets')
     </div>
     <div class="col-md-6">
-      @include('testmate.partials.project-page.project-users', array('userTest'=>$userTest))
+      @include('testmate.partials.project-page.project-users')
       @include('testmate.partials.project-page.timeline')
       @include('testmate.partials.project-page.piechart')
     </div>

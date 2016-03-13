@@ -34,4 +34,21 @@ class Project extends Model
 
     return $project;
   }
+
+
+  public static function getProjects($companyID, $statusEqual, $statusDifferent){
+    $query = DB::table('projects');
+    if(TESTMATE_COMPANY_ID != $companyID){
+        $query = $query->where('companyID', '=', $companyID);
+    }
+    if(!empty($statusEqual)){
+        $query = $query->where('status', '=', $statusEqual);
+    }
+    if(!empty($statusDifferent)){
+        $query = $query->where('status', '!=', $statusDifferent);
+    }
+
+    $projectsList = $query->get();
+    return $projectsList;
+  }
 }

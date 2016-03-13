@@ -17,22 +17,22 @@
             </thead>
             <tbody>
             @foreach($projectsList as $project)
-              <tr id="{{ $project['code'] }}" class="project-row">
-                <td><a href="/projects/{{ $project['code'] }}">{{ $project['code'] }}</a></td>
-                <td>{{ $project['lastUpdateDate'] }}</td>
-                @if($project['status'] == 'COMPLETED')
+              <tr id="{{ $project->code }}" class="project-row">
+                <td><a href="/projects/{{ $project->code }}">{{ $project->code }}</a></td>
+                <td>{{ $project->lastUpdateDate }}</td>
+                @if($project->status == 'COMPLETED')
                   <?php $statusColor = 'label label-info' ?>
-                  @elseif($project['status'] == 'IN PROGRESS')
+                  @elseif($project->status == 'IN PROGRESS')
                   <?php $statusColor = 'label label-success' ?>
-                  @elseif($project['status'] == 'APPROVAL PENDING')
+                  @elseif($project->status == 'APPROVAL PENDING')
                   <?php $statusColor = 'label label-warning' ?>
-                  @elseif($project['status'] == 'DELAYED')
+                  @elseif($project->status == 'DELAYED')
                   <?php $statusColor = 'label label-danger' ?>
                   @else
                   <?php $statusColor = 'label label-info' ?>
                   @endif
-                <td><span class="{{$statusColor}}">{{ $project['status'] }}</span></td>
-                <td>{{ $project['testersAmount'] }}</td>
+                <td><span class="{{$statusColor}}">{{ $project->status }}</span></td>
+                <td>{{ $project->testersAmount }}</td>
               </tr>
             @endforeach
             </tbody>

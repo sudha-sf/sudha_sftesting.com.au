@@ -49,7 +49,7 @@ h3.heading-comment {
 }
 /*------------ ASSET FORM END */
 /*------------ IMG LOGO */
-.logo{
+tr.project-row .logo{
     max-width: 150px;
     max-height: 50px;
 }
