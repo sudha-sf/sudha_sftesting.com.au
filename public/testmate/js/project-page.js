@@ -4,6 +4,13 @@ $(document).ready(function() {
         var main_box = $('.main-comments');
         main_box .scrollTop(main_box .prop('scrollHeight'));
     });
+    //Filter asset in project detail
+    $('#assetTypeInProject').change(function(){
+        var filterVal = $(this).val();
+        var urlAction = null;
+        urlAction = $('#filterAsset').attr('action')+'/filter?filterKey='+filterVal;
+        window.location.href = urlAction;
+    });
     //Open project form to create a new project
     $('.create_project').click(function(){
         $('#projectCreate').modal({

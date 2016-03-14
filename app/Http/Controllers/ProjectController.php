@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class ProjectController extends Controller
 {
@@ -25,26 +26,28 @@ class ProjectController extends Controller
   }
   public function showProject($projectCode, $assetID = null) {
     $companyID = Auth::user()->companyID;
-
     if(TESTMATE_COMPANY_ID != $companyID){
       $project = Project::where('companyID', '=', $companyID)->where('code', $projectCode)->firstOrFail();
     }else{
       $project = Project::where('code', $projectCode)->firstOrFail();
     }
-
-    $assetsHtml = $this->formatAssetsList($project);
+    $filterKey = Input::get('filterKey','ALL');
+    //dump($filterKey);die;
+    $assetsHtml = $this->formatAssetsList($project, $filterKey);
     //Total user test for each project belong to user's company
     $userTest = DB::table('projects')->where(array('companyID'=>$companyID))->sum('testersAmount');
 
     $pageTitle = $project->name. " Project";
-    return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle, 'assetID' =>$assetID,'userTest' => $userTest]);
+    return view('testmate.project-page', ['project' => $project, 'filesHtml' => $assetsHtml->filesHtml, 'timelineHtml' => $assetsHtml->timelineHtml, 'page_title' => $pageTitle, 'assetID' =>$assetID, 'userTest' => $userTest, 'projectCode'=>$projectCode]);
   }
 
 
 
-  function formatAssetsList($project){
+  function formatAssetsList($project, $filterKey){
+    //dump($filterKey);die;
     $assetFilessHtml = "";
     $timelineHtml = "";
+    $conditions = array('projectID'=>$project->projectID, '');
     $assets = Asset::where('projectID', '=', $project->projectID)->orderBy('uploadDate', 'desc')->get();
     foreach($assets as $asset){
       if($asset->assetType == "TIMELINE"){

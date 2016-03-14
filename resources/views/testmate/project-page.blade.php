@@ -4,7 +4,7 @@
 <div class='row'>
   <div class="col-md-6">
       @include('testmate.partials.project-page.project-status', array('project'=>$project))
-      @include('testmate.partials.project-page.project-assets')
+      @include('testmate.partials.project-page.project-assets', array('projectCode'=>$projectCode))
     </div>
     <div class="col-md-6">
       @include('testmate.partials.project-page.project-users', array('userTest'=>$userTest))

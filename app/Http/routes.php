@@ -40,6 +40,7 @@ Route::get('home', [    'middleware' => 'auth',    'uses' => 'HomeController@ind
  */
 Route::get('projects', [    'middleware' => 'auth',    'uses' => 'ProjectController@index']);
 Route::get('projects/{project}', ['middleware' => 'auth',    'uses' => 'ProjectController@showProject' ]);
+Route::get('projects/{project}/filter', ['middleware' => 'auth',    'uses' => 'ProjectController@showProject' ]);
 
 /*
  * Get all comment for a video in associated asset
