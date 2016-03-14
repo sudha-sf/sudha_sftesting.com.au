@@ -148,10 +148,12 @@ $('.submit_project').click(function(e){
     dataObj.append( 'finalReportPercentCompleted', $('#finalReportPercentCompleted').val() );
     dataObj.append( 'highlightsVideoPercentCompleted', $('#highlightsVideoPercentCompleted').val() );
     dataObj.append( 'status', $('#status').val() );
+    dataObj.append( 'code', $('#code').val() );
+    dataObj.append( 'companyID', $('#companyID').val() );
     if($('#projectID').val() != undefined && $('#projectID').val() != null){
-        Url = baseUrl()+'/admin/projects/'+$('#projectID').val();
+        Url = baseUrl()+'/admin/projects/update/'+$('#projectID').val();
     }else{
-        Url = baseUrl()+'/admin/projects/';
+        Url = baseUrl()+'/admin/projects/create';
     }
     return submitProject(dataObj, Url);
     e.preventDefault();
@@ -169,6 +171,10 @@ function UpdateProject(projectID){
                 $('#create_project').attr('method','PUT');
                 $('#create_project').attr('enctype','application/x-www-form-urlencoded');
                 $('#name').val(result.name);
+                var code = result.code;
+                var res = code.replace(/-/gi, " ");
+                $('#code').val(res);
+                $('#companyID').val(result.companyID);
                 $('#description').val(result.description);
                 $('#startingDate').val(result.startingDate);
                 $('#testersAmount').val(result.testersAmount);

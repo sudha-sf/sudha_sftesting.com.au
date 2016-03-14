@@ -9,7 +9,7 @@
         </div>
       </div>
       <!-- Create Form -->
-      @include('testmate.partials.project-page.modal-project-form')
+      @include('testmate.partials.project-page.modal-project-form', array('companies'=>$companies))
       <!-- /Create Fom-->
       <!-- /.box-header -->
       <div class="box-body table-responsive no-padding">

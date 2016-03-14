@@ -9,7 +9,7 @@
                   <!-- Horizontal Form -->
                   <div class="box box-info">
                       <div class="box-header with-border">
-                          <h3 class="box-title">Horizontal Form</h3>
+                          <h3 class="box-title">Project Editor</h3>
                       </div>
                       <!-- /.box-header -->
                       <!-- form start -->
@@ -20,6 +20,24 @@
 
                                   <div class="col-sm-10">
                                       <input type="text" placeholder="Please enter name of project" id="name" name="name" class="form-control" required>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="inputEmail3">Code</label>
+
+                                  <div class="col-sm-10">
+                                      <input type="text" placeholder="Please enter code of project" id="code" name="code" class="form-control" required>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="inputEmail3">Company</label>
+
+                                  <div class="col-sm-10">
+                                      <select class="form-control" id="companyID" name="companyID">
+                                          @foreach($companies as $key=>$value)
+                                            <option value="{{$value->companyID}}">{{$value->name}}</option>
+                                          @endforeach
+                                      </select>
                                   </div>
                               </div>
                               <div class="form-group">

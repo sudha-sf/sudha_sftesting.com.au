@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Project;
-use App\Asset;
+use App\Company;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +18,11 @@ class ProjectController extends Controller
    */
   public function index(Request $request) {
     $pageTitle = "ADMIN - Projects";
+    //Get All company object
+    $companies = Company::all();
     //Get all projects from database for a company
     $projectsList = Project::with('companyObject')->get();
-    return view('testmate.admin.projects-listing', ['projectsList' => $projectsList, 'page_title' => $pageTitle]);
+    return view('testmate.admin.projects-listing', ['projectsList' => $projectsList,'companies' => $companies, 'page_title' => $pageTitle]);
   }
   /*
    * Create new project
@@ -36,9 +38,10 @@ class ProjectController extends Controller
   {
     $params = $request->all();
     $project = new Project();
-    $project->companyID = Auth::user()->companyID;
+    //$project->companyID = Auth::user()->companyID;
     $project->name = $params['name'];
-    $project->code = 'WES-'.strtoupper($params['name']);
+    $project->companyID = $params['companyID'];
+    $project->code = str_replace(' ', '-', strtoupper($params['code']));
     $project->description = $params['description'];
     $project->startingDate = date('Y-m-d',strtotime($params['startingDate']));
     $project->testersAmount = $params['testersAmount'];
@@ -75,6 +78,8 @@ class ProjectController extends Controller
 
     $project = Project::where(array('projectID'=>$projectID))->get()->first();
     $project->name = $params['name'];
+    $project->companyID = $params['companyID'];
+    $project->code = str_replace(' ', '-', strtoupper($params['code']));
     $project->description = $params['description'];
     $project->startingDate = date('Y-m-d',strtotime($params['startingDate']));
     $project->status = $params['status'];

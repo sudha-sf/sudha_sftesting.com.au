@@ -67,8 +67,8 @@ Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\Ad
 {
     //All route for admin project
     Route::get('admin/projects', ['uses' => 'ProjectController@index' ]);
-    Route::post('admin/projects', ['uses' => 'ProjectController@create']);
-    Route::post('admin/projects/{projectID}', [ 'uses' => 'ProjectController@update']);
+    Route::post('admin/projects/create', ['uses' => 'ProjectController@create']);
+    Route::post('admin/projects/update/{projectID}', [ 'uses' => 'ProjectController@update']);
     Route::get('admin/projects/{projectID}', [ 'uses' => 'ProjectController@show']);
     Route::delete('admin/projects/{id}', ['uses' => 'ProjectController@index']);
     //All route for admin companies
