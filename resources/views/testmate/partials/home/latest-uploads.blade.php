@@ -16,7 +16,7 @@
                 @endif
               <li class="item {{$asset->assetType == 'DOCUMENT'?'asset-DOCUMENT':'asset-VIDEO'}}">
                 @if($asset->assetType === 'VIDEO')
-                    <a href="projects/WES-LOG/asset/{{$asset->assetID}}" target="_blank" class=" asset-item" id="{{$asset->assetID}}" asset-type="{{$asset->assetType}}">
+                    <a href="projects/{{$asset->code}}/asset/{{$asset->assetID}}" target="_blank" class=" asset-item" id="{{$asset->assetID}}" asset-type="{{$asset->assetType}}">
                 @else
                     <a href="{{$asset->url}}" target="_blank" class=" asset-item" id="{{$asset->assetID}}" asset-type="{{$asset->assetType}}">
                 @endif

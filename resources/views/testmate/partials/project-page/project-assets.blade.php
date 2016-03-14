@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                  <form action="/projects/{{$projectCode}}" method="get" id="filterAsset">
                  <select class="form-control" id="assetTypeInProject">
-                   <option value="All">All</option>
+                   <option value="ALL">All</option>
                    <option value="VIDEO">VIDEO</option>
                    <option value="DOCUMENT">DOCUMENT</option>
                  </select>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers;
+use App\Classes\Common;
 use Session;
 use Auth;
 use App\User;
@@ -50,7 +52,8 @@ class AuthController extends Controller
         $password = $request->input('password');
        if (Auth::attempt(['email' => $email, 'password' => $password]))
        {
-           return redirect()->intended('home');
+          Common::GetSessionVariables();
+          return redirect()->intended('home');
        }else{
           return redirect()->intended('/');
        }
@@ -62,5 +65,4 @@ class AuthController extends Controller
         Session::flush();
         return redirect()->intended('/');
     }
-
 }

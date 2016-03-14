@@ -7,14 +7,7 @@
           <div class="box box-widget">
               <!-- /.box-header -->
               <div class="box-body col-md-7">
-                  {{--<img class="img-responsive pad" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/photo2.png" alt="Photo">--}}
-                  <div class="video-object"></div>
-                  <div class="video-bottom hidden">
-                      <p>I took this photo this morning. What do you guys think?</p>
-                      <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                      <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                      <span class="pull-right text-muted">127 likes - 3 comments</span>
-                  </div>
+                    <div class="video-object"></div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer box-comments col-md-5">

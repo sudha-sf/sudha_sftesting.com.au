@@ -5,6 +5,10 @@ $(document).ready(function() {
         main_box .scrollTop(main_box .prop('scrollHeight'));
     });
     //Filter asset in project detail
+    var filterKey = getUrlParameter('filterKey');
+    if(filterKey !== undefined && filterKey !== 'ALL'){
+        $('#assetTypeInProject').val(filterKey);
+    }
     $('#assetTypeInProject').change(function(){
         var filterVal = $(this).val();
         var urlAction = null;
@@ -204,3 +208,18 @@ function submitProject(dataObj, Url){
         }
     });
 }
+//Get params from URL
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};

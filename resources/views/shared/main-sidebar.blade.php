@@ -10,7 +10,10 @@
       <li class="header">MAIN NAVIGATION</li>
       <li><a href="/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li class="active" ><a href="/projects"><i class="fa fa-edit"></i> <span>Projects</span></a></li>
-      <li class="active" ><a href="/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span><small class="label pull-right bg-red">3</small></a></li>
+      <li class="active" >
+        <a href="/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span>
+        <small class="label pull-right bg-red">{{ Session::get('projectsAmount') }}</small></a>
+      </li>
 
         <?php
         $companyID = Auth::user()->companyID;

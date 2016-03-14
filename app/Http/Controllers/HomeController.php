@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -16,24 +15,25 @@ class HomeController extends Controller
     {
         $companyID = Auth::user()->companyID;
 
+        $projectsList = Project::getProjects($companyID,"", "COMPLETED");
+
         if(TESTMATE_COMPANY_ID != $companyID){
-            $projectsList = Project::where('companyID', '=', $companyID)->get();
             if(count($projectsList) > 0){
-                $assetList = [];
-                foreach($projectsList as $key=>$project){
-                    $assetObj = Asset::where(array('projectID'=>$project->projectID))->orderBy('uploadDate','DESC')->get();
-                    if($assetObj){
-                        foreach($assetObj as $assetKey=>$asset){
-                            $assetList[] = $asset;
-                        }
-                    }
-                }
+
+                $assetList  = Asset::leftJoin('projects', 'projects.projectID', '=', 'assets.projectID')
+                ->select('assets.*', 'projects.code')
+                ->where('companyID', '=', $companyID)
+                ->orderBy('uploadDate','DESC')
+                ->get();
+
                 //Total user test for each project belong to user's company
                 $totalUsertest = DB::table('projects')->where(array('companyID'=>$companyID))->sum('testersAmount');
             }
         }else{
-            $projectsList = Project::all();
-            $assetList = Asset::all();
+            $assetList  = Asset::leftJoin('projects', 'projects.projectID', '=', 'assets.projectID')
+            ->select('assets.*', 'projects.code')
+            ->orderBy('uploadDate','DESC')
+            ->get();
             //Total user test for each project
             $totalUsertest = DB::table('projects')->sum('testersAmount');
         }
