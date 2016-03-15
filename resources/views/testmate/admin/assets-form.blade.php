@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-9 col-md-offset-1">
 
-<form id="assetForm" class="form-horizontal" action="/admin/assets/{{$project['code']}}/save" method="post">
+<form id="assetForm" class="form-horizontal" action="/admin/assets/{{$project['code']}}/save" method="post" enctype="multipart/form-data">
 <input type="hidden" name="assetID" value="{{$asset['assetID']}}" />
 <input type="hidden" name="projectID" value="{{$project['projectID']}}" />
 <fieldset>
@@ -37,6 +37,13 @@
 <div class="col-md-9">
 <input id="url" name="url" type="text" class="form-control" maxlength="500" value="{{$asset['url']}}">
 </div>
+</div>
+
+<div id="urlSection" class="form-group">
+    <label class="col-md-3 control-label" for="name">Upload file</label>
+    <div class="col-md-9">
+        <input id="uploadFile" name="uploadFile" type="file" class="form-control" maxlength="500" value="">
+    </div>
 </div>
 
 <div class="form-group">

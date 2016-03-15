@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
-
 class AssetController extends Controller
 {
   public function index($projectCode) {
@@ -79,6 +78,8 @@ class AssetController extends Controller
         }
 
         if ($project){
+            //Process upload file
+            $data['uploadFile'] = $this->uploadFile(Input::file('uploadFile'));
             if ($data['assetID']) {
 
                 $id = $data['assetID'];
@@ -144,5 +145,19 @@ class AssetController extends Controller
             Log::error($e);
         }
 
+    }
+    /*
+     * Upload file for asset
+     */
+    public function uploadFile($file)
+    {
+        $destinationPath = 'uploads/assets/'; // upload path
+        //$extension = \File::extension($file['name']);
+        $extension = Input::file('uploadFile'); // getting image extension
+
+        $fileName = 'asset_'.rand(11111,99999).'.'.$extension; // renameing image
+        Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+
+        return $fileName;
     }
 }
