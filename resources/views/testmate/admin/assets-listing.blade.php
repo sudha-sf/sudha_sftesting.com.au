@@ -29,7 +29,7 @@
                 <td>{{ $asset['url'] }}</td>
                 <td>{{ $asset['description'] }}</td>
                 <td><a href="/admin/assets/{{ $project['code'] }}/{{ $asset['assetID'] }}/edit">edit</a></td>
-                <td><a href="#">delete</a></td>
+                <td><a href="/admin/assets/{{ $project['code'] }}/{{ $asset['assetID'] }}/delete">delete</a></td>
               </tr>
           @endforeach
         </tbody></table>

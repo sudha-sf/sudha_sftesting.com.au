@@ -26,7 +26,7 @@ class AssetController extends Controller
     return view('testmate.admin.assets-listing', ['assetsList' => $assetsList, 'page_title' => $pageTitle, 'project' => $project]);
   }
 
-  public function showCreateForm($projectCode) {
+    public function showCreateForm($projectCode) {
 
     $pageTitle = "Create Asset";
 
@@ -56,6 +56,34 @@ class AssetController extends Controller
             }
 
             return view('testmate.admin.assets-form', ['asset' => $asset, 'page_title' => $pageTitle, 'project' => $project]);
+        } else {
+            return redirect()->intended('/'); // invalid request
+        }
+    }
+
+    public function showDeleteForm($projectCode, $assetID, Request $request) {
+
+        $pageTitle = "Delete Asset";
+
+        $project = Project::where('code', $projectCode)->firstOrFail();
+
+        $asset = Asset::where('assetID', '=', $assetID)->where('projectID', '=', $project->projectID)->firstOrFail();
+
+
+        if ($request->isMethod('post')) {
+            if($asset->delete()){
+                return Redirect::route('project—listing-admin', array('project' => $project->code));
+            }
+        }
+        if ($project && $asset) {
+
+            if ($asset['uploadDate']) {
+                $asset['uploadDate'] = date('m/d/Y', strtotime($asset['uploadDate']));
+            }
+
+            return view('testmate.admin.assets.delete-form', ['asset' => $asset, 'page_title' => $pageTitle,
+                'project' =>
+                $project]);
         } else {
             return redirect()->intended('/'); // invalid request
         }
@@ -121,6 +149,26 @@ class AssetController extends Controller
             return redirect()->intended('/'); // invalid request
         }
     }
+
+    /*
+     * Delete Asset
+     *
+     * */
+   /* public function delete($projectCode, Request $request) {
+
+        $project = Project::where('code', $projectCode)->firstOrFail();
+
+        var_dump($projectCode);die();
+        if ($project){
+//            $asset = Asset::where('assetID', '=', $id)->where('projectID', '=', $project->projectID)->firstOrFail();
+
+            return Redirect::route('project—listing-admin', array('project' => $project->code));
+        } else {
+
+            return redirect()->intended('/'); // invalid request
+        }
+    }*/
+
     /**
      * Send Email
      *

@@ -81,8 +81,10 @@ Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\Ad
     Route::get('admin/assets/{project}/create', [ 'uses' => 'AssetController@showCreateForm' ]);
 
     Route::get('admin/assets/{project}/{asset}/edit', [ 'uses' => 'AssetController@showEditForm' ]);
+    Route::any('admin/assets/{project}/{asset}/delete', [ 'uses' => 'AssetController@showDeleteForm' ]);
 
     Route::post('admin/assets/{project}/save', [ 'uses' => 'AssetController@save' ]);
+//    Route::post('admin/assets/{project}/delete', [ 'uses' => 'AssetController@delete' ]);
 });
 
 

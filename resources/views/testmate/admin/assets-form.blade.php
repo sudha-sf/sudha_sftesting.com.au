@@ -89,7 +89,7 @@
                 <div class="form-group">
                     <div class="col-md-12 text-right">
                         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                        <a href="/project-admin/{{$project['code']}}" class="btn btn-primary btn-lg">Cancel</a>
+                        <a href="/admin/assets/{{$project['code']}}" class="btn btn-primary btn-lg">Cancel</a>
                     </div>
                 </div>
             </fieldset>
