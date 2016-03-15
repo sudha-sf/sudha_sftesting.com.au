@@ -17,12 +17,14 @@
           <tbody><tr>
             <th>User Fullname</th>
             <th>Email</th>
+            <th>Company</th>
             <th colspan="2">Action</th>
           </tr>
           @foreach($usersList as $user)
             <tr class="project-row">
               <td><a href="{{url('admin/users/'.$user->userID)}}">{{ $user->firstName }} {{ $user->lastName }}</a></td>
               <td>{{ $user->email }}</td>
+              <td>{{ $user->company->name }}</td>
               <td><a href="#">EDIT</a></td>
               <td><a href="#">Delete</a></td>
             </tr>

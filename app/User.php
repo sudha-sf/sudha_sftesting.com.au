@@ -24,4 +24,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /*
+     * get Company of user
+     * */
+    public function company(){
+        return $this->hasOne('App\Company', 'companyID','companyID');
+    }
 }

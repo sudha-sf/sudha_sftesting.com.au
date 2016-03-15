@@ -23,7 +23,8 @@ class AssetController extends Controller
 
     $assetsList = Asset::where('projectID', '=', $project->projectID)->get();
 
-    return view('testmate.admin.assets-listing', ['assetsList' => $assetsList, 'page_title' => $pageTitle, 'project' => $project]);
+    return view('testmate.admin.assets.assets-listing', ['assetsList' => $assetsList, 'page_title' => $pageTitle,
+        'project' => $project]);
   }
 
     public function showCreateForm($projectCode) {
@@ -35,7 +36,8 @@ class AssetController extends Controller
     $asset = new Asset();
 
       if ($project) {
-        return view('testmate.admin.assets-form', ['asset' => $asset, 'page_title' => $pageTitle, 'project' => $project]);
+        return view('testmate.admin.assets.assets-form', ['asset' => $asset, 'page_title' => $pageTitle, 'project' =>
+            $project]);
       } else {
         return redirect()->intended('/'); // invalid request
       }
@@ -55,7 +57,8 @@ class AssetController extends Controller
                 $asset['uploadDate'] = date('m/d/Y', strtotime($asset['uploadDate']));
             }
 
-            return view('testmate.admin.assets-form', ['asset' => $asset, 'page_title' => $pageTitle, 'project' => $project]);
+            return view('testmate.admin.assets.assets-form', ['asset' => $asset, 'page_title' => $pageTitle, 'project'
+            => $project]);
         } else {
             return redirect()->intended('/'); // invalid request
         }

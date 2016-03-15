@@ -17,12 +17,14 @@
           <tbody><tr>
             <th>Company Name</th>
             <th>Company Logo</th>
+            <th>Other</th>
             <th colspan="2">Action</th>
           </tr>
           @foreach($companies as $company)
             <tr class="project-row">
               <td><a href="{{url('admin/companies/'.$company->companyID)}}">{{ $company->name }}</a></td>
               <td><img class="image logo" src="/testmate/images/{{ $company->logo }}"></td>
+              <td><a href="{{url('admin/companies/'.$company->companyID).'/users'}}">View Users</a></td>
               <td><a href="#">EDIT</a></td>
               <td><a href="#">Delete</a></td>
             </tr>

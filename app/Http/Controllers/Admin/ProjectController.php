@@ -22,7 +22,8 @@ class ProjectController extends Controller
     $companies = Company::all();
     //Get all projects from database for a company
     $projectsList = Project::with('companyObject')->get();
-    return view('testmate.admin.projects-listing', ['projectsList' => $projectsList,'companies' => $companies, 'page_title' => $pageTitle]);
+    return view('testmate.admin.projects.projects-listing', ['projectsList' => $projectsList,'companies' => $companies,
+        'page_title' => $pageTitle]);
   }
   /*
    * Create new project
@@ -98,7 +99,7 @@ class ProjectController extends Controller
     return json_encode(array('status'=>true,'massage'=>'Updated project successfully!'));
   }
   /*
-   * Show project ìnoformation
+   * Show project ï¿½noformation
    */
   public function show($projectID)
   {

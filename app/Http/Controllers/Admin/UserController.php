@@ -29,6 +29,6 @@ class UserController extends Controller
 
     $usersList = User::all();
 
-    return view('testmate.admin.users-listing', ['usersList' => $usersList, 'page_title' => $pageTitle]);
+    return view('testmate.admin.users.users-listing', ['usersList' => $usersList, 'page_title' => $pageTitle]);
   }
 }

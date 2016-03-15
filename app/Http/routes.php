@@ -73,6 +73,9 @@ Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\Ad
     Route::delete('admin/projects/{id}', ['uses' => 'ProjectController@index']);
     //All route for admin companies
     Route::get('admin/companies', ['uses' => 'CompanyController@index' ]);
+    Route::get('admin/companies/{companyID}/users/', ['uses' => 'CompanyController@showUsersCompany' ]);
+
+
     //All route for admin users
     Route::get('admin/users', ['uses' => 'UserController@index' ]);
     //All route for admin assets
@@ -84,7 +87,6 @@ Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\Ad
     Route::any('admin/assets/{project}/{asset}/delete', [ 'uses' => 'AssetController@showDeleteForm' ]);
 
     Route::post('admin/assets/{project}/save', [ 'uses' => 'AssetController@save' ]);
-//    Route::post('admin/assets/{project}/delete', [ 'uses' => 'AssetController@delete' ]);
 });
 
 
