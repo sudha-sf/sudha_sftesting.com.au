@@ -79,13 +79,31 @@ class AssetController extends Controller
         }
 
         if ($project){
-            if ($data['assetID']) {
 
+            $file = array_get($data,'uploadFile');
+            if($file){
+                // SET UPLOAD PATH
+                $destinationPath = "uploads/assets/".$projectCode;
+                // GET THE FILE EXTENSION
+                $extension = $file->getClientOriginalExtension();
+                // RENAME THE UPLOAD WITH RANDOM NUMBER
+                $fileName = rand(11111, 99999) . '.' . $extension;
+                // MOVE THE UPLOADED FILES TO THE DESTINATION DIRECTORY
+                $upload_success = $file->move($destinationPath, $fileName);
+
+                if($upload_success){
+                    $data['url'] = public_path().'/uploads/assets/'.$projectCode.'/'. $fileName;
+                }
+            }
+
+            if ($data['assetID']) {
                 $id = $data['assetID'];
+
                 $asset = Asset::where('assetID', '=', $id)->where('projectID', '=', $project->projectID)->firstOrFail();
                 $asset->update($data);
                 $assetID = $id;
             } else {
+
                 $asset = new Asset();
                 $assetObj = $asset->create($data);
                 $assetID = $assetObj->assetID;
