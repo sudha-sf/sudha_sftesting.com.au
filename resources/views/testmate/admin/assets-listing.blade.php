@@ -15,6 +15,7 @@
             <th>Upload Update</th>
             <th>Status</th>
             <th>Url</th>
+            <th>Description</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -25,6 +26,7 @@
                 <td>{{ $asset['assetType'] }}</td>
                 <td><?php if ($asset['uploadDate']) echo date('m/d/Y', strtotime($asset['uploadDate'])); ?></td>
                 <td><span class="label label-success">{{ $asset['status'] }}</span></td>
+                <td>{{ $asset['url'] }}</td>
                 <td>{{ $asset['description'] }}</td>
                 <td><a href="/admin/assets/{{ $project['code'] }}/{{ $asset['assetID'] }}/edit">edit</a></td>
                 <td><a href="#">delete</a></td>
