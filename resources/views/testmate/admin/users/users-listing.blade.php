@@ -27,7 +27,12 @@
               <td>{{ $user->email }}</td>
               <td>{{ $user->company->name }}</td>
               <td><a href="{{url('admin/users/'.$user->userID.'/edit')}}">EDIT</a></td>
-              <td><a href="#">Delete</a></td>
+                @if($user->isCompanyAdmin !=1)
+                    <td class=""><a href="{{url('admin/users/'.$user->userID.'/delete')}}" disabled>Delete</a></td>
+                @endif
+                @if($user->isCompanyAdmin == 1)
+                    <td class="user-disable"><a href="#" disabled>Delete</a></td>
+                @endif
             </tr>
           @endforeach
           </tbody></table>
