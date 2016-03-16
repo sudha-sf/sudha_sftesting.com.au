@@ -14,7 +14,7 @@
         <p class="error">{{$message}}</p>
       @endif
       <div class="form-group has-feedback">
-        <input type="email" name="email" value="{{ old('email') }}"  class="form-control" placeholder="Email">
+        <input type="email" name="email" value="{{ old('email') }}"  class="form-control" placeholder="Email" required>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
 
