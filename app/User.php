@@ -13,7 +13,7 @@ class User extends Authenticatable
      */
     protected $primaryKey = 'userID';
     protected $fillable = [
-        'firstName','lastName', 'email', 'password',
+        'firstName','lastName', 'email', 'password', 'enabled', 'isCompanyAdmin'
     ];
 
     /**

@@ -9,68 +9,71 @@
                     <label class="col-md-3 control-label" for="assetType">First Name</label>
 
                     <div class="col-md-4">
-                        <input id="uploadDate" name="firstName" type="text" class="form-control" value="">
+                        <input id="firstName" name="firstName" type="text" class="form-control" value="">
                     </div>
                     <label class="col-md-2 control-label" for="uploadDate">Last Name</label>
 
                     <div class="col-md-3">
-                        <input id="uploadDate" name="lastName" type="text" class="form-control" value="">
+                        <input id="lastName" name="lastName" type="text" class="form-control" value="">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="name">Asset Name *</label>
-
-                    <div class="col-md-9">
-                        <input id="name" name="name" type="text" class="form-control" required maxlength="450" value="">
-                    </div>
-
-                </div>
-
-                <div id="urlSection" class="form-group">
-                    <label class="col-md-3 control-label" for="name">URL</label>
+                    <label class="col-md-3 control-label" for="assetType">Password</label>
 
                     <div class="col-md-4">
-                        <input id="url" name="url" type="text" class="form-control" maxlength="500" value="">
+                        <input id="password" name="password" type="password" class="form-control" value="">
                     </div>
+                    <label class="col-md-2 control-label" for="uploadDate">Confirm pasword</label>
 
-                    <label class="col-md-2 control-label">Upload File</label>
-
-                    <div class="col-md-2">
-                        <input id="uploadFile" name="uploadFile" type="file" class="form-control" value="">
-                    </div>
-                    <div class="col-md-1">
-                        <button type="button" id="removeUploadFile" class="btn btn-primary">Remove</button>
+                    <div class="col-md-3">
+                        <input id="confirmPass" name="confirmPass" type="password" class="form-control" value="">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="status">Status</label>
+                    <label class="col-md-3 control-label" for="assetType">Avatar</label>
 
-                    <div class="col-md-9">
-                        <select id="status" name="status" class="form-control">
-                            <option value="">Please Select</option>
-                            <option value="APPROVED">APPROVED</option>
-                            <option value="PENDING">PENDING APPROVAL</option>
-                            <option value="CANCELLED">CANCELLED</option>
+                    <div class="col-md-4">
+                        <input id="password" name="password" type="password" class="form-control" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="assetType">Email</label>
+
+                    <div class="col-md-4">
+                        <input id="email" name="email" type="text" class="form-control" value="">
+                    </div>
+                    <label class="col-md-2 control-label" for="uploadDate">Company</label>
+
+                    <div class="col-md-3">
+                        <select class="form-control" id="companyID" name="companyID">
+                            @foreach($companiesList as $key=>$value)
+                                <option value="{{$value->companyID}}">{{$value->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="message">Asset Description</label>
-
-                    <div class="col-md-9">
-                        <textarea class="form-control" id="description" name="description" placeholder="" rows="5"></textarea>
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox">
+                            <label>
+                                <input id="enabled" name="enabled" type="checkbox"> Enable user
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input id="isCompanyAdmin" name="isCompanyAdmin" type="checkbox"> Is company admin
+                            </label>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-12 col-md-offset-1">
-                        <input type="checkbox" name="notify">
-                        <span>Notify Project Team Lead about new asset</span>
-                    </div>
-                </div>
+
 
                 <!-- Form actions -->
                 <div class="form-group">

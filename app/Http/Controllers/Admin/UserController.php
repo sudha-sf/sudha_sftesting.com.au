@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use DB;
 use App\User;
+use App\Company;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,17 +34,31 @@ class UserController extends Controller
   }
 
     /*
-     * Create User
-     * */
+     *Create a new User
+     *
+     *@POST("/admin/users/create")
+     *@Param: ({'firstName','lastName', 'email', 'password', 'enabled', 'isCompanyAdmin'})
+     *@Version("v1")
+     */
 
-    public function createUser(){
+    public function createUser(Request $request){
         $pageTitle = "Create New User";
-        return view('testmate.admin.users.form-user', ['page_title' => $pageTitle]);
+        //List all companies from database
+        $companiesList = Company::all();
+        //Process submit & saving data
+        if($request->getMethod() == 'POST'){
+          dump($request->all());die;
+        }
+        return view('testmate.admin.users.form-user', ['page_title' => $pageTitle, 'companiesList'=>$companiesList]);
     }
 
 
     /*
-     * Edit User*/
+     * Update user's information
+     *@POST("/admin/users/edit")
+     *@Param: ({'firstName','lastName', 'email', 'password', 'enabled', 'isCompanyAdmin'})
+     *@Version("v1")
+     */
     public function editUser(){
 
     }
