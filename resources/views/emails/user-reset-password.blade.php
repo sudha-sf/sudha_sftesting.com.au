@@ -7,10 +7,10 @@
     <body>
         <p style="text-align: center;"><img src="{{url('/testmate/images/testmate-logo.png')}}" style="max-width: 150px; max-height: 50px;"></p>
 
-        <p>Hi {{$full_name}},</p>
+        <p>Hi {{$fullname}},</p>
 
-        <p>You have a new comment for the {{$assetName}} in the {{$projectName}}.</p>
-        <p>Please click here to access the link: <a href="{{$access_link}}">{{$title}}</a></p>
+        <p>You have been reset your password.</p>
+        <p>Please use this password for login: {{$newPass}}</p>
 
         <p>Testmate Team</p>
         <p>Best regards,</p>
