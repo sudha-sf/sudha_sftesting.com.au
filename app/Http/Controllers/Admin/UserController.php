@@ -31,4 +31,28 @@ class UserController extends Controller
 
     return view('testmate.admin.users.users-listing', ['usersList' => $usersList, 'page_title' => $pageTitle]);
   }
+
+    /*
+     * Create User
+     * */
+
+    public function createUser(){
+        $pageTitle = "Create New User";
+        return view('testmate.admin.users.form-user', ['page_title' => $pageTitle]);
+    }
+
+
+    /*
+     * Edit User*/
+    public function editUser(){
+
+    }
+
+    /*
+     *  Delete User
+     * */
+    public function deleteUser(){
+
+    }
+
 }

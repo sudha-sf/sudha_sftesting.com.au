@@ -5,7 +5,8 @@
     <div class="box">
       <div class="box-header">
         <div class="box-header">
-          <h3 class="box-title"><a href="javascript:;" class="btn btn-default create_user">New User</a></h3>
+          <h3 class="box-title"><a href="{{url('admin/users/create/')}}" class="btn btn-default create_user">Create New
+                  User</a></h3>
         </div>
       </div>
       <!-- Create Form -->
@@ -25,7 +26,7 @@
               <td><a href="{{url('admin/users/'.$user->userID)}}">{{ $user->firstName }} {{ $user->lastName }}</a></td>
               <td>{{ $user->email }}</td>
               <td>{{ $user->company->name }}</td>
-              <td><a href="#">EDIT</a></td>
+              <td><a href="{{url('admin/users/'.$user->userID.'/edit')}}">EDIT</a></td>
               <td><a href="#">Delete</a></td>
             </tr>
           @endforeach
