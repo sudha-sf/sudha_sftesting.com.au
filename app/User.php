@@ -11,6 +11,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public $timestamps = false;
     protected $primaryKey = 'userID';
     protected $fillable = [
         'firstName','lastName', 'email', 'password', 'enabled', 'isCompanyAdmin'
@@ -24,7 +25,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    protected $rules = [
 
+    ];
     /*
      * get Company of user
      * */

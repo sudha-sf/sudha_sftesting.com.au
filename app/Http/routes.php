@@ -80,7 +80,7 @@ Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\Ad
     //All route for admin users
     Route::get('admin/users', ['uses' => 'UserController@index' ]);
     Route::any('admin/users/create', ['uses' => 'UserController@createUser' ]);
-    Route::post('admin/users/{userID}/edit', ['uses' => 'UserController@editUser' ]);
+    Route::any('admin/users/{userID}/edit', ['uses' => 'UserController@editUser' ]);
     Route::post('admin/users/{userID}/delete', ['uses' => 'UserController@deleteUser' ]);
 
 
