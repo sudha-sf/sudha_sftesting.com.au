@@ -33,7 +33,11 @@
         <!-- /.col -->
       </div>
     </form>
-
+    <div class="row">
+      <div class="col-xs-8">
+        <strong><a href="{{url("/forgot-pasword")}}">I forgot my pasword</a></strong>
+      </div>
+    </div>
   </div>
   <!-- /.login-box-body -->
 </div>

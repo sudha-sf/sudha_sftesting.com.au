@@ -201,7 +201,14 @@ class AssetController extends Controller
             $mailContent->assetName = strtoupper($asset->name);
 
             //Send email to Admin who are related the asset commented by user
-            Mail::send('emails.asset-notifications', ['message' => $mailContent], function ($m) use ($mailContent) {
+            Mail::send('emails.asset-notifications', ['message' => $mailContent,
+                'full_name'=>$mailContent->full_name,
+                'access_link'=>$mailContent->access_link,
+                'title'=>$mailContent->title,
+                'projectName'=>$mailContent->projectName,
+                'assetName'=>$mailContent->assetName,
+            ],
+                function ($m) use ($mailContent) {
                     $m->from(TESTMATE_EMAIL_FROM, TESTMATE_EMAIL_FROM_NAME);
                     $m->to($mailContent->email_to, $mailContent->full_name)->subject($mailContent->subject);
                 });

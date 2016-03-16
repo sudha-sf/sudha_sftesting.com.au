@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Route::get('company', 'CompanyController@index');
 
+Route::any('forgot-pasword', 'UsersController@forgot');
+
 
 Route::get('auth/login', 'Auth\AuthController@authenticate');
 Route::post('auth/login', 'Auth\AuthController@authenticate');
