@@ -76,19 +76,17 @@
                     <div class="col-md-4">
                         <div class="checkbox">
                             <label>
-                                <input id="enabled" name="enabled" value="1" type="checkbox"> Enable user
+                                <input id="enabled" name="enabled" value="1" {{$user->enabled? 'checked': ''}} type="checkbox"> Enable user
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input id="isCompanyAdmin" name="isCompanyAdmin" value="1" type="checkbox"> Is
+                                <input id="isCompanyAdmin" name="isCompanyAdmin" value="1" {{$user->isCompanyAdmin? 'checked': ''}} type="checkbox"> Is
                                 company admin
                             </label>
                         </div>
                     </div>
                 </div>
-
-
 
                 <!-- Form actions -->
                 <div class="form-group">

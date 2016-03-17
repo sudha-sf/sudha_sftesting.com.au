@@ -53,3 +53,8 @@ tr.project-row .logo{
     max-width: 150px;
     max-height: 50px;
 }
+
+.user-disable a{
+    color: #cccccc;
+    cursor: default;
+}

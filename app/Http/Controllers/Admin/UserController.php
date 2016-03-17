@@ -226,6 +226,11 @@ class UserController extends Controller
 
     }
 
+    /*
+     * Check Email if exit in system
+     * @Param: ({'email'})
+     * @Version("v1")
+     * */
     private function checkEmailExist($email)
     {
         $userExist = User::where(array('email'=>$email))->count();
