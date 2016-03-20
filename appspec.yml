@@ -2,8 +2,4 @@ version: 0.0
 os: linux
 files:
   - source: /
-<<<<<<< HEAD
     destination: /var/www/vhosts/testmate_portal_dev/httpdocs/
-=======
-    destination: /var/www/vhosts/testmate_portal_dev/httpdocs
->>>>>>> 9fbfab19686da4ea8bf541d315f6ea8d1b949354
