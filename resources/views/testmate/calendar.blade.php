@@ -2,7 +2,7 @@
 
 @section('content')
 
-<?php  $colours = array("blue", "green", "yellow", "red", "teal", "light-blue", "orange", "green", "lime", "purple", "fuchsia", "muted", "navy"); ?>
+<?php  $colours = array("blue", "green", "orange", "lime", "purple",  "teal", "light-blue",  "green", "fuchsia", "muted", "navy", "yellow", "red"); ?>
 
 <div class='row'>
   <div class="col-md-3">

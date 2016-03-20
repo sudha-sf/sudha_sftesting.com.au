@@ -30,17 +30,13 @@ $(function () {
         $statusColor = $colours[$counter];
         $url = "/projects/".$project['code'];
         $counter++;
-        if($project->assets != null){
-          foreach($project->assets as $asset){
 
-
-            $events .="{ title: '". $asset['name']. "',
-               url: '$url',
-               start: new Date( ".date('Y', strtotime($asset['uploadDate'])).", ".date('m', strtotime($asset['uploadDate'])).", ".date('d', strtotime($asset['uploadDate']))."),
-               backgroundColor: '". $statusColor."',
-               borderColor: '". $statusColor."'},";
-          }
-        }
+        $events .="{ title: '". $project['name']. "',
+           url: '$url',
+           start: new Date( ".date('Y', strtotime($project['startingDate'])).", ".(date('m', strtotime($project['startingDate']))-1).", ".date('d', strtotime($project['startingDate']))."),
+           end: new Date( ".date('Y', strtotime($project['expectedEndDate'])).", ".(date('m', strtotime($project['expectedEndDate']))-1).", ".date('d', strtotime($project['expectedEndDate']))."),
+           backgroundColor: '". $statusColor."',
+           borderColor: '". $statusColor."'},";
       }
       echo $events;
       ?>
