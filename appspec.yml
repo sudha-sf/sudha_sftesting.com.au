@@ -2,4 +2,4 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/vhosts/testmate_portal_dev/portal-dev.testmate.com.au/httpdocs/
+    destination: /var/www/
