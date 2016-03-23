@@ -1,4 +1,3 @@
-<div class="col-md-9">
   <div class="box box-primary">
     <div class="box-body no-padding">
       <!-- THE CALENDAR -->
@@ -7,10 +6,9 @@
     <!-- /.box-body -->
   </div>
   <!-- /. box -->
-</div>
-  <link rel="stylesheet" href="https://almsaeedstudio.com/themes/AdminLTE/plugins/fullcalendar/fullcalendar.min.css">
+<link rel="stylesheet" href="/testmate/css/fullcalendar.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="https://almsaeedstudio.com/themes/AdminLTE/plugins/fullcalendar/fullcalendar.min.js"></script>
+<script src="/testmate/js/fullcalendar.min.js"></script>
 <script>
 $(function () {
   var date = new Date();

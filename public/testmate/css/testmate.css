@@ -2,6 +2,7 @@ header .logo img{
   max-width: 230px;
   max-height: 50px;
 }
+.content{overflow: hidden;}
 
 /*ASSETS PER PROJECT PAGE*/
 .item .asset-image{
