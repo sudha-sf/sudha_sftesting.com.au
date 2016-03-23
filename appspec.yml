@@ -1,15 +1,5 @@
 version: 0.0
 os: linux
-if [ "$DEPLOYMENT_GROUP_NAME" == "portal.testmate.com.au-dev-grp" ]
-then
 files:
   - source: /
     destination: /var/www/vhosts/testmate_portal_dev/portal-dev.testmate.com.au/httpdocs/
-fi
-
-if [ "$DEPLOYMENT_GROUP_NAME" == "portal.testmate.com.au-prd-grp" ]
-then
-files:
-  - source: /
-    destination: /var/www/vhosts/testmate_portal_dev/portal.testmate.com.au/httpdocs/
-fi
