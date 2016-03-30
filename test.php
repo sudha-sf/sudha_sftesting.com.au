@@ -3,4 +3,4 @@ echo "This is a test file from local";
 
 echo "Testing the auto commit through git. Testing again.";
 
-echo "sdsdfsdfsd123";
+echo "123";
