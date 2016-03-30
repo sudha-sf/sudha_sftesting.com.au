@@ -5,7 +5,7 @@
     <div class="box">
       <div class="box-header">
         <div class="box-header">
-          <h3 class="box-title"><a href="javascript:;" class="btn btn-default create_company">New Company</a></h3>
+          <h3 class="box-title"><a href="{{url('admin/companies/create/')}}" class="btn btn-default create_company">New Company</a></h3>
         </div>
       </div>
       <!-- Create Form -->
@@ -25,7 +25,7 @@
               <td><a href="{{url('admin/companies/'.$company->companyID)}}">{{ $company->name }}</a></td>
               <td><img class="image logo" src="/testmate/images/{{ $company->logo }}"></td>
               <td><a href="{{url('admin/companies/'.$company->companyID).'/users'}}">View Users</a></td>
-              <td><a href="#">EDIT</a></td>
+              <td><a href="{{url('admin/companies/'.$company->companyID).'/edit'}}">EDIT</a></td>
               <td><a href="#">Delete</a></td>
             </tr>
           @endforeach

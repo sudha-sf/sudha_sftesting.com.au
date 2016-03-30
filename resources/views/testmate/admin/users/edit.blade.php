@@ -30,7 +30,7 @@
                                value="{{ old('newPassword') }}">
                         <span class="text-danger">{{ $errors->first('newPassword') }}</span>
                     </div>
-                    <label class="col-md-2 control-label" for="uploadDate">Confirm pasword</label>
+                    <label class="col-md-2 control-label" for="uploadDate">Confirm password</label>
 
                     <div class="col-md-3">
                         <input id="confirmPass" name="confirmPass" type="password" class="form-control" disabled value="{{
@@ -43,7 +43,7 @@
                     <label class="col-md-3 control-label" for="assetType">Avatar</label>
 
                     <div class="col-md-4">
-                        <input id="avatar" name="avatar" type="file" class="form-control" value="">
+                      <  <input id="avatar" name="avatar" type="file" class="form-control" value="">
                     </div>
                     <div class="col-md-4">
                         <a href="#" class="thumbnail" style="width: 200px">

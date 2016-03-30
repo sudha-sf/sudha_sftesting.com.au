@@ -76,8 +76,11 @@ Route::group(array('namespace'=>'Admin', 'middleware' => 'App\Http\Middleware\Ad
 
     //All route for admin companies
     Route::get('admin/companies', ['uses' => 'CompanyController@index' ]);
+    Route::get('admin/companies/create', ['uses' => 'CompanyController@createCompany' ]);
+    Route::post('admin/companies/create', ['uses' => 'CompanyController@createCompany' ]);
+    Route::any('admin/companies/{companyID}/edit/', ['uses' => 'CompanyController@editCompany' ]);
     Route::get('admin/companies/{companyID}/users/', ['uses' => 'CompanyController@showUsersCompany' ]);
-
+    
 
     //All route for admin users
     Route::get('admin/users', ['uses' => 'UserController@index' ]);
