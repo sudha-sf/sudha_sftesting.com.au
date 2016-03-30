@@ -2,6 +2,6 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/vhosts/sudha_dev/sudha_sftesting.com.au/httpdocs/
+    destination: /var/www/vhosts/sudha/example/httpdocs/
 
 
